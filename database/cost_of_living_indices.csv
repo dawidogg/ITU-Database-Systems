@@ -1,0 +1,484 @@
+"Hamilton","Bermuda",,BMD,128.19,113.35,131.79,151.38,96.54
+"Geneva","Switzerland",geneva,CHF,103.02,70.66,129.84,131.7,121.11
+"Basel","Switzerland",,CHF,92.5,51.14,135.74,120.52,102.2
+"Zurich","Switzerland",zurich,CHF,98.72,64.69,131.73,131.71,134.5
+"Zug","Switzerland",,CHF,96.13,66.03,126.15,118.38,96.22
+"Lausanne","Switzerland",Lausanne,CHF,87.6,54.82,115,119.34,117.56
+"Bern","Switzerland",bern,CHF,82.75,45.14,116.79,113.61,100.69
+"Lugano","Switzerland",,CHF,84.54,51.44,104.96,121.17,92.46
+"Stavanger","Norway",,NOK,76.08,36.73,102.26,134.69,111.35
+"Trondheim","Norway",,NOK,78.1,41.6,102.06,118.57,98.92
+"Reykjavik","Iceland",reykjavik,ISK,81.95,49.73,104.22,120.42,77.42
+"Venice","Italy",,EUR,70.43,27.61,84.39,131.18,50.53
+"Oslo","Norway",oslo,NOK,77.7,45.94,98.05,119.36,101.49
+"Bergen","Norway",bergen,NOK,74.49,41.99,96.72,107.09,101.42
+"Nassau","Bahamas",,BSD,72.9,40.03,96.25,91.5,40.42
+"New York","United States",new-york,USD,100,100,100,100,100
+"Honolulu","United States",honolulu,USD,84.08,67.28,106.51,87.51,85.56
+"San Francisco","United States",san-francisco-bay-area,USD,111.92,125.79,110.16,91.99,96.76
+"Anchorage","United States",anchorage,USD,72.71,44.49,99.8,84.06,136.45
+"Washington","United States",washington-dc,USD,88.32,80.69,91.28,89.65,110.15
+"New Haven","United States",,USD,72,48.36,108.07,94.52,121.84
+"Berkeley","United States",,USD,85.02,77.68,102.21,78.8,99.25
+"Santa Cruz","United States",,USD,81.01,69.34,102.62,73.04,121.28
+"Kuwait City","Kuwait",,KWD,66.31,39.06,107.55,52.7,76.99
+"Brooklyn","United States",,USD,85.49,79.24,86.17,104.31,96.19
+"Tokyo","Japan",tokyo,JPY,67.43,41.86,94.79,55.87,98.6
+"Seattle","United States",seattle,USD,78.67,65.77,93.9,79.85,119.76
+"Arlington","United States",,USD,80.46,70.62,84.67,87.73,127.26
+"Florence","Italy",florence,EUR,59.25,26.45,80.87,80.49,53.78
+"Boston","United States",boston,USD,83.7,77.51,90.68,90.96,131.75
+"Akron","United States",,USD,57.05,22.83,99.03,69.28,74.48
+"Oakland","United States",,USD,85.96,83.51,91.72,87.79,88.89
+"Copenhagen","Denmark",copenhagen,DKK,67.68,45.64,68.02,104.57,102.15
+"Dusseldorf","Germany",dusseldorf,EUR,62.34,34.99,74.4,85.86,102.46
+"Santa Rosa","United States",,USD,71.32,54.64,86.35,77.61,105.42
+"Charleston","United States",charleston,USD,69.4,50.82,95.5,82.25,128.01
+"Limerick","Ireland",,EUR,55.19,21.17,83.88,78.52,98.49
+"Philadelphia","United States",philadelphia,USD,69.59,51.39,89.52,76.21,129.65
+"Miami","United States",miami,USD,75.25,63.33,84.65,89.37,90.43
+"Allentown","United States",,USD,61.32,34.41,91.49,70.89,76.93
+"Sydney","Australia",sydney,AUD,75.82,64.72,79.21,71.93,109.23
+"Perth","Australia",perth,AUD,64.24,40.89,80.31,88.93,113.65
+"Modena","Italy",,EUR,53.17,18.23,72.38,74.14,60.64
+"Darwin","Australia",,AUD,66.27,46.23,85.94,81.22,71.75
+"Burlington","United States",,USD,64.23,42.05,92.56,75.33,115.38
+"Padova","Italy",,EUR,54.5,21.79,71.84,75.41,67.01
+"Chicago","United States",chicago,USD,72.13,58.68,80.88,82.58,122.99
+"Fairfax","United States",,USD,71.42,57.46,81.69,73.65,140.52
+"Hamilton","New Zealand",,NZD,55.6,24.7,69.86,80.85,123.08
+"Leuven","Belgium",,EUR,55.8,25.21,90.57,70.99,82.57
+"Auckland","New Zealand",auckland,NZD,64.91,44.27,76.97,76.44,102.2
+"Melbourne","United States",,USD,57.63,29.36,92.94,81.45,131.77
+"Stockholm","Sweden",stockholm,SEK,62.79,40.37,77.33,84.52,101.95
+"Paris","France",paris,EUR,63.76,42.64,79.61,80.89,95.4
+"St. John's","Canada",,CAD,53.89,22.22,90.7,78.89,90.24
+"Pittsburgh","United States",pittsburgh,USD,61.77,38.74,84.26,75.85,146.69
+"Minneapolis","United States",minneapolis-saint-paul,USD,62.91,41.16,90.3,73.62,119.76
+"Irvine","United States",,USD,75.53,67.51,86.93,76.12,128.29
+"San Jose","United States",,USD,83.99,85.35,84.96,79.15,152.9
+"Boulder","United States",boulder,USD,70.17,56.56,80.17,80.82,131.14
+"Portland","United States",portland-me,USD,62.57,40.81,83.13,90.33,104.14
+"Denver","United States",denver,USD,69.22,54.68,82.51,74.62,139.95
+"Singapore","Singapore",singapore,SGD,76.57,70.22,71.68,58.33,92.7
+"Aalborg","Denmark",,DKK,54.26,24.07,64.36,95.79,98.61
+"Asheville","United States",asheville,USD,60.37,36.91,93.35,71.08,148.27
+"Arhus","Denmark",aarhus,DKK,56.53,28.96,59.76,101.04,105.38
+"Albany","United States",,USD,58.09,32.29,89.49,69.64,151.44
+"London","United Kingdom",london,GBP,75.99,69.87,59.49,88.76,83.32
+"Ramat Gan","Israel",,ILS,56.84,30.44,67.86,86.84,84.73
+"Trieste","Italy",,EUR,51.5,19.3,70.31,81.74,72.29
+"Parma","Italy",,EUR,52.58,21.66,71.08,86.63,69.33
+"Greensboro","United States",,USD,54.53,25.81,86.64,63.56,140.95
+"Baltimore","United States",,USD,65.67,49.26,81.39,79.11,128.67
+"Los Angeles","United States",los-angeles,USD,74.65,68.11,76.53,82.39,124.27
+"Portland","United States",portland-or,USD,67.28,52.81,81.48,71.93,117.83
+"West Palm Beach","United States",,USD,63.33,44.61,82.9,77.07,120.48
+"Melbourne","Australia",melbourne,AUD,62.63,43.41,77.04,72.73,127.42
+"Christchurch","New Zealand",christchurch,NZD,56.73,31.13,74.3,80.9,72.91
+"Bolzano-Bozen","Italy",,EUR,54.02,25.51,78.47,76.9,64.83
+"Sacramento","United States",,USD,61.27,40.65,81.37,72.78,122.17
+"Adelaide","Australia",adelaide,AUD,57.11,31.96,75.81,74.5,110.82
+"New Orleans","United States",new-orleans,USD,61.25,40.73,80.91,81.36,98.33
+"Tel Aviv-yafo","Israel",tel-aviv,ILS,60.56,39.32,66.22,86.79,90
+"Hartford","United States",,USD,61.88,42.11,80.68,82.9,107.34
+"Santa Barbara","United States",,USD,76.98,73.63,76.53,87.54,111.17
+"Hong Kong","Hong Kong",hong-kong,HKD,81.93,84.08,81.88,54.87,81.45
+"Cairns","Australia",,AUD,55.91,29.8,77.98,75.44,73.76
+"Luxembourg","Luxembourg",luxembourg,EUR,66.11,51.18,64.79,94.19,117.13
+"Brisbane","Australia",brisbane,AUD,62.69,44.11,73.72,75.09,118.86
+"Seoul","South Korea",seoul,KRW,59.34,37.15,93.98,44.81,90.86
+"Dublin","Ireland",dublin,EUR,65.37,49.78,63.07,84.14,99
+"Orlando","United States",orlando,USD,60.69,40.23,83.92,76.45,107.49
+"Jerusalem","Israel",,ILS,55.62,29.71,66.45,85.1,87.37
+"Waterloo","Canada",,CAD,55.18,28.81,78.24,67.53,125.13
+"Des Moines","United States",des-moines,USD,56.98,32.62,89.98,64.63,94.83
+"Antwerp","Belgium",,EUR,53.66,25.81,71.74,86.44,86.99
+"Hobart","Australia",,AUD,55.24,29.49,74.9,85.18,94.99
+"Busan","South Korea",,KRW,50.52,20,94.33,49.65,102.61
+"Gent","Belgium",,EUR,52.71,24.64,71.64,82.92,91.01
+"Jersey City","United States",,USD,73.82,68.71,76.34,72.81,151.55
+"Fort Lauderdale","United States",,USD,68.06,56.71,76.39,76.53,105.05
+"Grand Rapids","United States",,USD,57.32,34.44,78.55,73.73,132.41
+"Helsinki","Finland",helsinki,EUR,58.5,36.93,66.79,85.36,110.6
+"Cleveland","United States",cleveland,USD,57.08,34,77.55,70.58,116.16
+"Saskatoon","Canada",saskatoon,CAD,54.15,28.09,80.29,71.64,95.16
+"Tacoma","United States",,USD,57.43,35.07,75.47,66.97,118.7
+"Amsterdam","Netherlands",amsterdam,EUR,62.69,46.04,62.29,83.98,90.41
+"San Diego","United States",san-diego,USD,70.08,61.54,77.09,77.42,128.92
+"Canberra","Australia",,AUD,61.11,43.25,76.86,72.19,141.65
+"The Hague (Den Haag)","Netherlands",the-hague,EUR,58.09,37.15,61.06,83.05,86.72
+"Genoa","Italy",,EUR,49.55,19.36,70.38,71.13,60.64
+"Jacksonville","United States",jacksonville,USD,55.63,32.07,80.12,74.92,112.56
+"Wellington","New Zealand",wellington,NZD,56.68,34.28,72.41,70.88,120.31
+"Detroit","United States",detroit,USD,57.79,36.69,78.23,65.26,133.91
+"Turku","Finland",turku,EUR,51.13,22.81,66.65,81.46,115.5
+"Maastricht","Netherlands",,EUR,53.98,28.8,72.11,74.36,97.56
+"Harrisburg","United States",,USD,52.56,26,83.25,65.36,132.14
+"Newcastle","Australia",,AUD,60.15,41.85,78.4,79.46,131.79
+"Fayetteville","United States",,USD,50.8,22.54,82.56,67.5,83.87
+"Milan","Italy",milan,EUR,58.13,37.82,68.07,81.06,76.86
+"Lyon","France",lyon,EUR,51.06,23.25,73.52,69.58,98.14
+"Red Deer","Canada",,CAD,52.47,26.19,72.74,73.73,103.82
+"Saint Paul","United States",minneapolis-saint-paul,USD,57.51,36.84,79.84,64.92,104.6
+"Halifax","Canada",halifax,CAD,53.53,28.58,80.69,70.75,94.86
+"Nashville","United States",nashville,USD,61.75,45.79,77.32,74.26,127.93
+"Milwaukee","United States",milwaukee,USD,56.46,35.03,75.72,75.18,122.87
+"Cagliari","Italy",,EUR,49.41,20.32,65.37,73.93,49.15
+"Indianapolis","United States",indianapolis,USD,54.4,30.79,79.48,67.08,94.08
+"Atlanta","United States",atlanta,USD,60.72,44.01,76.45,74.11,148.36
+"Gothenburg","Sweden",gothenburg,SEK,53.59,29.24,69.19,79.15,112.08
+"Brussels","Belgium",brussels,EUR,54.74,31.79,66.45,82.92,95.8
+"Charlotte","United States",charlotte,USD,58.74,40.15,77.42,72.48,117.9
+"Hamburg","Germany",hamburg,EUR,53.63,29.57,60.87,66,106.88
+"Tampa","United States",tampa-bay-area,USD,58.87,40.53,80.03,70.37,100.2
+"Syracuse","United States",,USD,52.23,26.98,76.85,62.69,95.49
+"Houston","United States",houston,USD,61.11,45.59,73.66,77.51,150.24
+"Saint Louis","United States",st-louis,USD,53.22,29.23,74.87,72.33,141.86
+"Calgary","Canada",calgary,CAD,55.93,34.98,73.42,71.66,116.66
+"Frankfurt","Germany",frankfurt,EUR,55.2,33.46,64.43,66.44,114.94
+"Brighton","United Kingdom",brighton,GBP,58.05,39.74,63.85,84.22,79.22
+"Tampere","Finland",tampere,EUR,50.87,24.85,62.2,84.59,103.3
+"Birmingham","United States",birmingham-al,USD,52.37,28.02,73.98,74.09,137.64
+"Aberdeen","United Kingdom",,GBP,53.43,30.25,60.97,83.43,112.13
+"Bergamo","Italy",,EUR,48.27,19.5,61.03,85,67.16
+"Wichita","United States",,USD,51.03,25.33,81.3,67.43,105.11
+"Fresno","United States",,USD,53.71,30.99,74.2,72.13,107.14
+"Bakersfield","United States",,USD,51.88,27.38,74.87,74.44,130.04
+"Louisville","United States",louisville,USD,52.25,28.27,83.93,62.94,124.18
+"Cork","Ireland",cork,EUR,55.18,34.52,61.25,76.48,116.8
+"Greenville","United States",,USD,56.5,37.32,79.05,67.54,137.12
+"Bellingham","United States",,USD,54.47,33.15,75.81,71.52,102.49
+"Haifa","Israel",,ILS,48.38,20.46,59.25,82.99,98.05
+"Chattanooga","United States",chattanooga,USD,51.64,27.27,77.71,65.38,128.62
+"Austin","United States",austin,USD,63.18,51.35,73.6,71.27,126.85
+"Rome","Italy",rome,EUR,56.39,37.18,64.5,74.29,72.41
+"Victoria","Canada",victoria,CAD,54.6,33.76,77.51,67.22,118.14
+"Tallahassee","United States",,USD,52.7,29.83,82.01,60.76,105.59
+"Toulouse","France",toulouse,EUR,49.91,24.05,67.07,76.87,107.05
+"Buffalo","United States",buffalo,USD,52.22,28.89,74.14,66.34,115.19
+"Bournemouth","United Kingdom",,GBP,53.38,31.31,67.5,74.71,84.86
+"Utrecht","Netherlands",utrecht,EUR,55.25,35.48,60.08,82.74,101.16
+"Cambridge","United Kingdom",cambridge,GBP,57.35,39.93,59.48,84.87,98.47
+"Gold Coast","Australia",,AUD,55.71,36.74,71.58,66.12,104.38
+"Milton Keynes","United Kingdom",,GBP,55.48,36.38,64.36,73.84,88.94
+"Newark","United States",,USD,55.2,36.02,63.01,81.29,125.8
+"Spokane","United States",,USD,50.75,26.85,74.69,67.14,112.05
+"Edmonton","Canada",edmonton,CAD,52.27,30.03,71.67,67.3,113.83
+"Vancouver","Canada",vancouver,CAD,60.25,46.72,76.48,66.48,91.28
+"Raleigh","United States",raleigh,USD,55.26,36.33,77.31,70.46,146.98
+"Eugene","United States",eugene,USD,52.37,30.4,75.33,64.52,130.03
+"Mississauga","Canada",,CAD,54.46,34.8,68.44,68.92,93.42
+"Little Rock","United States",,USD,50.4,26.41,76.41,64.53,124.98
+"San Juan","Puerto Rico",san-juan,USD,50.68,27.04,67.31,71.94,79.2
+"Barrie","Canada",,CAD,49.97,25.6,71.7,62.35,126.54
+"London","Canada",,CAD,49.24,24.28,73.52,64.06,104.04
+"Regina","Canada",,CAD,50.62,27.28,73.92,64.58,115.17
+"Edinburgh","United Kingdom",edinburgh,GBP,52.28,30.81,62.3,75.07,100.17
+"Fort Worth","United States",,USD,54.65,35.83,73.36,63.56,149.47
+"Rotterdam","Netherlands",rotterdam,EUR,50.23,26.67,53.09,83.18,100.43
+"Munich","Germany",munich,EUR,56.45,39.74,56.55,71.19,123.5
+"Virginia Beach","United States",,USD,54.99,36.7,73.35,68.02,121.55
+"Dayton","United States",,USD,47.87,21.95,74.39,57.67,120.43
+"Columbus","United States",columbus,USD,53.65,34.03,69.84,64.08,120.68
+"Vancouver","United States",vancouver,USD,53.58,33.91,70.53,64.45,132.55
+"Oxford","United Kingdom",oxford,GBP,60.15,47.66,59.31,75.85,86.58
+"Columbia","United States",,USD,52.09,30.86,78.55,63.75,84.28
+"Las Vegas","United States",las-vegas,USD,52.2,31.08,63.27,74.31,145.23
+"Reading","United Kingdom",,GBP,55.46,37.91,52.42,85.56,108.6
+"Lille","France",lille,EUR,47.87,22.1,61.5,69.09,93.39
+"Dubai","United Arab Emirates",dubai,AED,72.86,74.39,59.57,65.68,113.31
+"Fremont","United States",,USD,71.07,70.7,59.86,74.18,150.85
+"Bologna","Italy",bologna,EUR,48.26,23.31,62.61,71.06,82.83
+"Windsor","Canada",,CAD,47.17,21.05,63.88,61.51,116.5
+"Trento","Italy",,EUR,48.89,24.7,64.29,67.69,85.78
+"Montreal","Canada",montreal,CAD,49.2,25.33,75.37,63.25,103.16
+"Salem","United States",,USD,51.48,30.16,70.91,71.93,77.9
+"Knoxville","United States",knoxville,USD,51.93,31.21,76.22,65.75,144.89
+"Malmo","Sweden",malmo,EUR,50,27.26,66.45,73.83,135.27
+"Galway","Ireland",gaillimh,EUR,51.51,30.62,59.99,71.02,121.98
+"Cincinnati","United States",cincinnati,USD,51.96,31.57,66.83,66.88,128.35
+"Tulsa","United States",,USD,51.24,30.18,73.5,60.96,135.62
+"Bristol","United Kingdom",bristol,GBP,54.04,36.15,61.42,77.77,92.54
+"Fort Wayne","United States",,USD,47.61,22.73,76.34,67.95,143.31
+"Fort Myers","United States",,USD,50.8,29.5,72.42,62.4,92.92
+"Toronto","Canada",toronto,CAD,56.18,40.84,65.44,67.11,115.94
+"Eindhoven","Netherlands",eindhoven,EUR,50.94,29.92,54.09,81.61,116.79
+"Winnipeg","Canada",winnipeg,CAD,49.12,26.21,68.7,67.19,87.99
+"Dallas","United States",dallas,USD,56.74,42.11,65.29,70.5,163.48
+"Montevideo","Uruguay",montevideo,UYU,45.77,19.26,56.47,67.79,32.43
+"Gainesville","United States",,USD,50.61,29.44,71.43,61.09,94.1
+"Ad Dammam","Saudi Arabia",,SAR,42.93,13.44,85.81,32.15,108.07
+"Uppsala","Sweden",uppsala,EUR,48.84,25.78,57.81,75.21,111.1
+"Ann Arbor","United States",,USD,56.56,42.06,67.4,63.21,153.16
+"Rochester","United States",rochester,USD,50.59,29.81,69.1,71.14,130.05
+"Madison","United States",madison,USD,54.56,38.24,66.05,67.52,137.44
+"Leiden","Netherlands",,EUR,49.64,28.33,54.45,80.61,101.49
+"Groningen","Netherlands",,EUR,48.94,26.89,57.5,76.79,102.93
+"Kansas City","United States",kansas-city,USD,49.88,29,66.65,70.36,156.57
+"Phoenix","United States",phoenix,USD,51.2,31.76,61.46,75.44,146.53
+"Manchester","United Kingdom",manchester,GBP,49.57,28.39,56.36,79.57,97
+"Norwich","United Kingdom",,GBP,47.5,24.07,54.1,74.57,84.92
+"Doha","Qatar",doha,QAR,68.11,67.13,55.38,72.42,111.7
+"Glasgow","United Kingdom",glasgow,GBP,49.39,28.19,58.13,77.13,103.45
+"Exeter","United Kingdom",,GBP,49.64,28.71,56.11,77.54,74.64
+"Kingston","Canada",,CAD,48.79,27.08,69.11,63.38,95.77
+"Sliema","Malta",,EUR,50.07,29.8,61.48,75.55,77.22
+"Southampton","United Kingdom",,GBP,49.63,28.88,59.63,68.22,110.04
+"Vienna","Austria",vienna,EUR,50.07,29.94,62.23,66.64,98.5
+"York","United Kingdom",,GBP,48.83,27.41,56.54,77.77,104.4
+"Salt Lake City","United States",salt-lake-city,USD,52.27,34.68,66.1,71.06,152.54
+"Ottawa","Canada",ottawa,CAD,50.42,30.81,62.74,72.91,126.26
+"Heidelberg","Germany",,EUR,49.85,29.91,53.55,63.87,146.5
+"Quebec City","Canada",quebec,CAD,44.29,18.55,69.43,62.18,113.51
+"Liverpool","United Kingdom",liverpool,GBP,46.31,22.84,56.31,74.92,113.78
+"Moncton","Canada",,CAD,44.04,18.49,66.82,61.27,103.43
+"Huntsville","United States",,USD,47.98,27.12,63.88,68.54,124.94
+"Surrey","Canada",,CAD,49.01,29.37,67.29,63.23,81.11
+"Shreveport","United States",,USD,47.08,25.41,65.95,64.01,77.68
+"Albuquerque","United States",albuquerque,USD,47.2,25.83,65.8,67.87,131.25
+"Karlsruhe","Germany",karlsruhe,EUR,47,25.43,47.91,71.48,125.73
+"Leicester","United Kingdom",,GBP,44.46,20.45,56.14,75.56,95.62
+"Mobile","United States",,USD,46.28,24.27,66.34,66.28,148.43
+"Cologne","Germany",cologne,EUR,46.99,25.79,50.45,64.44,118.42
+"Kelowna","Canada",,CAD,49.94,31.98,69.16,64.96,103.59
+"Nantes","France",nantes,EUR,44.55,20.81,57.28,66.72,140.66
+"Stuttgart","Germany",stuttgart,EUR,48.57,29.33,49.8,65.79,129.18
+"Accra","Ghana",,GHS,58.03,49.11,61.56,46.48,13.26
+"Taipei","Taiwan",taipei,TWD,44.61,21.12,80.17,31.09,119.79
+"Oklahoma City","United States",oklahoma-city,USD,47.39,26.93,70.12,59.76,126.12
+"Bonn","Germany",,EUR,47.96,28.23,43.49,61.39,97.66
+"Naples","Italy",naples,EUR,44.1,20.24,63.31,56.97,39.3
+"Abu Dhabi","United Arab Emirates",,AED,68.5,71.26,55.27,64.61,136.07
+"Guelph","Canada",,CAD,47.27,27.39,60.29,62.51,110.13
+"Leeds","United Kingdom",leeds,GBP,46.2,25.27,56.22,68.9,106.22
+"Kingston","Jamaica",kingston,JMD,41.57,15.67,65.67,38.03,36.07
+"Sheffield","United Kingdom",,GBP,44.95,22.9,54.97,77.31,103.88
+"Boise","United States",boise,USD,47.65,28.55,63.15,67.63,115.13
+"Turin","Italy",turin,EUR,43.17,19.44,53.46,68.03,80.05
+"Nottingham","United Kingdom",,GBP,44.2,21.65,57.83,61.42,121.74
+"Birmingham","United Kingdom",birmingham,GBP,46.12,26.22,51.47,70.26,97.09
+"Coventry","United Kingdom",,GBP,46.32,26.71,51.01,65.74,108.29
+"Beirut","Lebanon",beirut,LBP,51.07,36.72,47.99,60.93,51.84
+"Panama City","Panama",panama,PAB,51.39,37.44,65.8,56.6,35.14
+"Bilbao","Spain",,EUR,46.13,26.46,54.93,66.82,91.88
+"Berlin","Germany",berlin,EUR,46.08,26.41,50.66,54.8,116.11
+"Tucson","United States",,USD,45.17,24.85,62.35,64.8,141.45
+"Cardiff","United Kingdom",cardiff,GBP,45.08,24.7,55.34,68.12,105.28
+"Nuremberg","Germany",,EUR,43.93,22.45,47.85,65.69,140.5
+"Graz","Austria",,EUR,43.61,21.79,53.82,59.13,113.28
+"Newcastle Upon Tyne","United Kingdom",,GBP,44.71,24.12,49.58,70.96,109.29
+"Marseille","France",marseille,EUR,42.9,20.9,59.17,55.9,99.33
+"San Antonio","United States",san-antonio,USD,49.33,35.03,60.74,59.96,136.57
+"Sharjah","United Arab Emirates",,AED,47.31,30.9,52.94,43.51,116.35
+"San Jose","Costa Rica",san-jose,CRC,42.74,21.58,63.32,48.38,44.69
+"Leipzig","Germany",leipzig,EUR,40.77,17.67,45.9,56.93,87.51
+"Reno","United States",,USD,47.1,31.04,53.07,68.51,109.46
+"Kitchener","Canada",,CAD,44.21,25.07,54.72,63.37,124.49
+"Amman","Jordan",,JOD,38.84,13.89,53.7,57.28,41.69
+"Athens","United States",,USD,43.88,24.55,57.16,67.11,133.08
+"Zaragoza (Saragossa)","Spain",,EUR,39.27,14.95,51.12,53.51,79.34
+"Bari","Italy",,EUR,39.43,15.34,50.71,61.29,60.57
+"Palermo","Italy",,EUR,39.24,14.98,53.1,57.39,61.56
+"Springfield","United States",,USD,41.09,18.88,65.27,56.36,88.45
+"Hamilton","Canada",,CAD,43.74,24.43,55.89,58.52,130.23
+"Nicosia","Cyprus",nicosia,EUR,38.85,14.55,52.72,69.18,91.25
+"Male","Maldives",,MVR,47.25,32.14,60.5,42.75,28.96
+"Barcelona","Spain",barcelona,EUR,44.66,26.76,50.37,57.18,83.1
+"Irbil","Iraq",,IQD,40.65,18.46,43.8,59.22,41.28
+"Madrid","Spain",madrid,EUR,45.06,28.29,49.67,60.28,85.18
+"Dresden","Germany",dresden,EUR,40.46,18.86,46.1,49.38,122.83
+"Belfast","United Kingdom",belfast,GBP,40.94,20.17,54.61,66.29,119.46
+"Bremen","Germany",,EUR,40.71,19.81,41.26,62.16,149.81
+"Palma De Mallorca","Spain",,EUR,40.62,19.87,48.52,59.45,80.41
+"Campinas","Brazil",,BRL,38.34,15.64,45.75,45.65,54.48
+"Aachen","Germany",,EUR,40.77,20.97,46.6,57.14,152.5
+"Ljubljana","Slovenia",ljubljana,EUR,39.07,17.71,48.18,48.7,72.23
+"Athens","Greece",athens,EUR,36.22,11.89,46.86,60.73,51.3
+"Manama","Bahrain",,BHD,45.17,30.88,53.67,52.36,101.2
+"Rio De Janeiro","Brazil",rio-de-janeiro,BRL,42.2,24.92,44.83,51.65,43.26
+"Sao Paulo","Brazil",sao-paulo,BRL,40.5,21.64,45.16,49.64,42.51
+"Ulaanbaatar","Mongolia",,MNT,44.05,29.77,56.68,31.5,22.36
+"Limassol","Cyprus",,EUR,37.58,16.61,46.65,61.27,103.73
+"Dar Es Salaam","Tanzania",dar-es-salaam,TZS,44.73,32.27,43.1,37.11,25.27
+"Brasilia","Brazil",,BRL,37,16.3,45.24,47.34,48.71
+"Thessaloniki","Greece",thessaloniki,EUR,33.95,10.12,43.44,54.81,50.44
+"Heraklion","Greece",,EUR,33.01,9.29,47.03,49.32,67.56
+"Buenos Aires","Argentina",buenos-aires,ARS,35.72,15.06,45.89,53.49,56.86
+"Shanghai","China",shanghai,CNY,46,36.85,57.72,40,74.16
+"Muscat","Oman",,OMI,43.93,32.58,48.91,59.17,119.41
+"Kaohsiung","Taiwan",,TWD,33.07,10.37,61.72,23.02,144.45
+"Santo Domingo","Dominican Republic",santo-domingo,DOP,34.43,13.57,47.75,43.78,25.81
+"Santiago","Chile",santiago,CLP,36.54,18,46.98,51.45,56.32
+"Shenzhen","China",,CNY,42.07,29.6,58.43,34,74.75
+"Granada","Spain",,EUR,34.03,13.14,44.75,49.48,88.48
+"Alicante","Spain",,EUR,34.82,14.81,43.3,48.25,76.14
+"Makati","Philippines",,PHP,40.83,27.74,54.2,33.23,42.67
+"Porto Alegre","Brazil",porto-alegre,BRL,34.01,13.61,41.68,42.52,47.52
+"Valencia","Spain",valencia,EUR,35.57,16.88,44.23,48.76,87.46
+"Harare","Zimbabwe",,ZWL,34.68,15.37,42.5,42.3,26.5
+"Patras","Greece",,EUR,31.45,8.88,41.11,54.06,66.56
+"Recife","Brazil",,BRL,33.42,13.91,43.81,34.06,34.46
+"Tallinn","Estonia",tallinn,EUR,34.1,15.33,37.57,53.13,68.76
+"Guayaquil","Ecuador",,USD,33.37,13.92,45.91,38.06,36.14
+"Rijeka","Croatia",,HRK,32.01,11.18,43.01,39.17,49.26
+"Florianopolis","Brazil",florianopolis,BRL,33.63,14.79,40.14,41.55,41.16
+"Split","Croatia",,HRK,31.89,11.47,42.84,46.46,53.35
+"Belo Horizonte","Brazil",,BRL,32.91,13.68,40.77,35.9,39.56
+"Lisbon","Portugal",lisbon,EUR,37.07,22.51,40.17,44.23,61.33
+"Phnom Penh","Cambodia",phnom-penh,KHR,35.73,19.9,54.21,24.36,20.61
+"Jeddah (Jiddah)","Saudi Arabia",,SAR,33.27,15.02,41.3,31.86,111.99
+"Curitiba","Brazil",curitiba,BRL,31.67,12.05,38.19,41.35,50.73
+"Malaga","Spain",malaga,EUR,34.49,17.97,41.21,45.06,104.23
+"Bangkok","Thailand",bangkok,THB,37.64,24.59,54.03,25.95,49.07
+"Seville","Spain",seville,EUR,34.74,18.53,41.35,46.19,82.5
+"Phuket","Thailand",phuket,THB,32.27,13.58,54.51,25.16,46.36
+"Riga","Latvia",riga,EUR,31.79,12.87,36.58,45.58,52.01
+"Tripoli","Libya",,LYD,35.11,19.85,47.78,34.5,51.78
+"Beijing","China",beijing,CNY,43.78,38.2,47.83,37.85,70.92
+"Porto","Portugal",porto,EUR,33.04,15.99,39.25,38.73,66.31
+"Zagreb","Croatia",zagreb,HRK,31.06,12.03,41.19,37.82,67.14
+"Jakarta","Indonesia",jakarta,IDR,36.41,23.34,52.41,27.1,41.45
+"Quito","Ecuador",quito,USD,32.39,15.05,46.95,34.61,34.49
+"Tartu","Estonia",tartu,EUR,31.68,13.71,37.05,48.43,73.46
+"San Salvador","El Salvador",san-salvador,USD,29.93,10.25,43.9,37.8,28.88
+"Al Khobar","Saudi Arabia",,SAR,32.58,15.8,42.44,32.42,156.36
+"Moscow","Russia",moscow,RUB,39.6,30.68,36.95,52.6,57.38
+"Riyadh","Saudi Arabia",riyadh,SAR,32.74,16.38,40.84,33.76,148.29
+"Bratislava","Slovakia",bratislava,EUR,34.19,19.62,42.31,35.58,70.94
+"Coimbra","Portugal",,EUR,31.06,13.17,38.36,38.07,69.37
+"Vilnius","Lithuania",vilnius,EUR,31.72,14.86,36.32,40.39,54.06
+"Addis Ababa","Ethiopia",,ETB,34.46,20.83,39.7,23.91,15.54
+"Braga","Portugal",,EUR,29.59,11.41,37.34,32.98,64.02
+"Kaunas","Lithuania",,EUR,28.87,10.05,35.96,40.51,50.05
+"Cuenca","Ecuador",,USD,29.42,11.3,48.35,31.66,38.65
+"Guatemala City","Guatemala",guatemala-city,GTQ,31.8,16.46,41.46,35.61,48.23
+"Kota Kinabalu","Malaysia",,MYR,27.79,8.26,50.88,22.21,46.28
+"Guangzhou","China",,CNY,33.51,20.48,45.99,28.28,69.89
+"Kosice","Slovakia",,EUR,30.41,14.49,40.77,27.74,56.05
+"Johannesburg","South Africa",johannesburg,ZAR,32.05,17.99,37.59,40.29,111.67
+"Bali","Indonesia",bali,IDR,30.07,14.04,49.56,24.13,19.61
+"Saint Petersburg","Russia",saint-petersburg,RUB,32.46,19.49,35.07,44.88,50.13
+"Cape Town","South Africa",cape-town,ZAR,35.07,25.31,37.03,40.59,86.13
+"Budapest","Hungary",budapest,HUF,30.04,14.97,34.41,33.08,52.33
+"Prague","Czech Republic",prague,CZK,31.92,19.2,37.77,31.44,76.62
+"Chiang Mai","Thailand",chiang-mai,THB,28.4,11.97,53.91,20.1,32.38
+"Pattaya","Thailand",,THB,30.05,15.64,49.04,24.67,26.07
+"Ho Chi Minh City","Vietnam",ho-chi-minh-city,VND,30.98,17.61,45.26,21.01,32.45
+"Lima","Peru",lima,PEN,31.87,19.77,39.47,31,44.44
+"Penang","Malaysia",,MYR,27.04,9.8,47.29,22.96,72.54
+"Kuala Lumpur","Malaysia",kuala-lumpur,MYR,30.33,16.72,44.83,24.79,81.35
+"Osijek","Croatia",,HRK,25.61,6.94,36.6,28.67,58.63
+"Lagos","Nigeria",lagos,NGN,31.44,19.38,38.63,23.1,29.76
+"Nairobi","Kenya",nairobi,KES,28.87,14.17,39.84,34.47,28.64
+"Hanoi","Vietnam",,VND,30.48,17.6,38.77,23.59,21.85
+"Tehran","Iran",tehran,IRR,32.35,21.71,37.74,33.82,39.85
+"Istanbul","Turkey",istanbul,TRY,28.54,14.4,35.67,30.66,55.18
+"Kigali","Rwanda",,RWF,28.08,13.68,32.73,28.2,27.31
+"Rabat","Morocco",,MAD,27.37,12.28,36.74,25.45,37.03
+"Johor Bahru","Malaysia",,MYR,27,11.6,48.25,18.26,54.63
+"Brno","Czech Republic",brno,CZK,28.38,14.5,36.22,27.24,75.76
+"Selangor","Malaysia",,MYR,25.99,9.6,47.41,17.72,89.4
+"Durban","South Africa",,ZAR,28.28,14.52,34.05,37.64,98.38
+"Warsaw","Poland",warsaw,PLN,30.16,18.62,31.51,35.14,74.32
+"Manila","Philippines",manila,PHP,28.67,15.9,37.58,24.57,47.8
+"Cebu","Philippines",,PHP,26.79,12.16,39.56,25.28,23.37
+"Gdansk","Poland",gdansk,PLN,27.11,14.13,28.7,32.05,72.08
+"Podgorica","Montenegro",,EUR,25.74,11.33,30.87,32.49,49.61
+"Caracas","Venezuela",caracas,VEF,24.76,9.46,39.22,38.6,2.99
+"Yekaterinburg","Russia",,RUB,26.07,12.29,32.85,35.41,50.08
+"Krakow (Cracow)","Poland",krakow,PLN,27.53,15.53,30.31,31.61,73.94
+"Bucharest","Romania",bucharest,RON,25.87,12.1,30.99,35.08,53.59
+"Olomouc","Czech Republic",,CZK,25.39,11.12,36.49,26.3,78.28
+"Gdynia","Poland",,PLN,25.67,11.72,30.32,30.48,70.51
+"Wroclaw","Poland",wroclaw,PLN,27.52,15.73,30.98,31.63,69.21
+"Bogota","Colombia",bogota,COP,26.92,14.53,32.87,28.2,36.69
+"Colombo","Sri Lanka",,LKR,25.76,12.2,39.76,21.55,24.88
+"Ostrava","Czech Republic",,CZK,24.49,9.72,33.76,27.37,74.91
+"Kazan","Russia",,RUB,25.31,11.68,30.78,42.91,47.54
+"Poznan","Poland",,PLN,25.94,13.09,31.24,31.61,66.8
+"Sofia","Bulgaria",sofia,BGN,24.67,10.56,31.9,29.78,57.21
+"Sarajevo","Bosnia And Herzegovina",sarajevo,BAM,23.41,7.95,31.14,27.63,48.9
+"Bandung","Indonesia",,IDR,23.18,7.77,44.19,16.71,23.91
+"Ankara","Turkey",ankara,TRY,22.93,7.29,33.25,26.48,62
+"Dhaka","Bangladesh",,BDT,22.65,6.73,33.04,26.54,38.59
+"Szczecin","Poland",,PLN,24.54,10.68,29.52,28.57,62.05
+"Lodz","Poland",,PLN,24.65,11.3,28.89,30.74,67.82
+"Cluj-napoca","Romania",cluj-napoca,RON,24.49,11.1,31.61,28.8,51.76
+"Casablanca","Morocco",casablanca,MAD,25.62,13.45,33.3,24.55,48.09
+"Antalya","Turkey",,TRY,22.26,6.48,33.11,27.31,64.01
+"Algiers","Algeria",,DZD,23.51,9.61,36.12,26.18,35.49
+"Belgrade","Serbia",belgrade,RSD,23.69,10.01,26.39,32.63,40.31
+"Izmir","Turkey",,TRY,22.64,7.97,31.04,26.38,54.23
+"Plovdiv","Bulgaria",,BGN,21.77,6.26,30.27,31.04,44.51
+"Lublin","Poland",,PLN,25.09,13.31,27.86,26.98,59.66
+"Varna","Bulgaria",,BGN,22.35,7.84,31.04,29.67,44.9
+"Novosibirsk","Russia",,RUB,24.04,11.53,32.08,30.18,48.3
+"Timisoara","Romania",,RON,23.04,9.64,29.76,26.95,49.71
+"Bursa","Turkey",,TRY,21.28,6.02,31.11,23.75,67.07
+"Katowice","Poland",,PLN,23.33,10.32,28.61,27.3,79.66
+"Quezon City","Philippines",,PHP,21.85,7.23,32.24,19.65,40.96
+"Sibiu","Romania",,RON,21.95,7.64,29.22,28.04,42.18
+"Minsk","Belarus",minsk,BYR,24.11,12.56,28.24,37.93,36.44
+"Banja Luka","Bosnia And Herzegovina",,BAM,21.14,6.4,28.49,24.14,51.23
+"Yerevan","Armenia",yerevan,AMD,23.25,10.91,26.61,32.44,33.28
+"Skopje","Macedonia",skopje,MKD,21.87,8.12,27.77,26.06,39.69
+"Islamabad","Pakistan",,PKR,22.48,9.62,31.63,22.74,35.05
+"Novi Sad","Serbia",,RSD,20.92,6.42,25.68,26.85,39.33
+"Asuncion","Paraguay",asuncion,PYG,22.48,9.87,28.17,26.11,38.78
+"Brasov","Romania",,RON,21.65,8.18,27.47,29.65,58.6
+"Medellin","Colombia",medellin,COP,21.48,7.97,30.23,24.06,37.96
+"Iasi","Romania",,RON ,21.95,9,27.62,27.22,49.63
+"Mexico City","Mexico",mexico-city,MXN,24.96,15.58,31.39,29.8,58.17
+"Tirana","Albania",,ALL,21.89,9.3,26.66,25.39,33.2
+"Cancun","Mexico",,MXN,21.99,9.77,27.74,31.47,57.4
+"Monterrey","Mexico",,MXN,22.25,10.63,31.68,28.26,91.05
+"Almaty","Kazakhstan",almaty,KZT,23.27,13.07,26.25,33.78,49.62
+"Kathmandu","Nepal",kathmandu,NPR,18.96,4.37,29.26,18.47,24.48
+"Queretaro","Mexico",,MXN,20.95,8.54,31.09,27.79,70.65
+"Lahore","Pakistan",,PKR,19.58,5.77,27.39,29.42,47.35
+"Davao","Philippines",,PHP,19.54,6.17,30.68,14.26,35.6
+"Gurgaon","India",,INR,21.07,9.85,30.12,26.19,110.16
+"Cali","Colombia",,COP,19.68,7.48,25.86,23,36.86
+"Tunis","Tunisia",tunis,TND,19.53,7.21,29.16,20.64,38.53
+"Valenzuela","Philippines",,PHP,17.53,3.29,31.01,14.83,36.15
+"Merida","Mexico",,MXN,19.2,7.19,29.42,23.78,36.39
+"Mumbai","India",mumbai,INR,26.05,21.55,31.02,22.23,71.97
+"Tijuana","Mexico",,MXN,18.82,6.97,27.92,27.69,53.57
+"Guadalajara","Mexico",guadalajara,MXN,18.6,6.88,28.88,26.78,50.43
+"Delhi","India",delhi,INR,19.86,9.72,27.84,21.82,77.84
+"Ludhiana","India",,INR,17.12,4.12,27.16,21.5,61.2
+"Chisinau","Moldova",chisinau,MDL,19.11,8.52,22.62,20.54,29.52
+"Karachi","Pakistan",,PKR,18.15,6.8,26.85,21.37,43.21
+"Baku","Azerbaijan",baku,AZN,20.15,10.97,23.98,30.13,30.62
+"Odesa","Ukraine",,UAH,19.1,9.03,19.22,26.29,30.13
+"Noida","India",,INR,17.93,6.64,28.77,20.3,88.2
+"Thane","India",,INR,18.82,8.54,28.98,19.06,57.1
+"Tbilisi","Georgia",tbilisi,GEL,18.86,8.94,22.63,26.86,32.22
+"Kiev","Ukraine",kiev,UAH,20.27,12.18,20.86,22.16,29.9
+"Pune","India",,INR,17.68,7.33,28.4,19.46,103.45
+"Bangalore","India",,INR,18.26,8.69,28.37,16.36,96.06
+"Chennai","India",chennai,INR,17.42,7.15,29.14,15.63,79.47
+"Kolkata","India",,INR,16.97,6.58,26.49,20.99,57.86
+"Chandigarh","India",,INR,16.63,6.42,26.11,18.27,72.44
+"Navi Mumbai","India",,INR,17.87,9,25.91,20.15,84.65
+"Kharkiv","Ukraine",,UAH,18.62,10.58,18.63,19.53,23.63
+"Goa","India",,INR,17.17,7.58,26.07,20.06,56.75
+"Ahmedabad","India",,INR,16.36,5.92,27.28,16.73,61.66
+"Surat","India",,INR,15.72,4.6,25.39,20.12,58.05
+"Lucknow (Lakhnau)","India",,INR,15.7,4.61,26.19,16.32,58.37
+"Vadodara","India",,INR,15.29,4.05,28.05,16.42,76.12
+"Jaipur","India",,INR,15.37,4.44,26.07,15.54,74.41
+"Dnipropetrovsk","Ukraine",,UAH,16.38,6.73,19.11,20.55,34.47
+"Sumy","Ukraine",,UAH,14.9,4.15,20.54,15.48,24.76
+"Indore","India",,INR,14.66,3.98,23.32,17.18,46.25
+"Lviv","Ukraine",lviv,UAH,16.51,8.06,20,15.19,24.38
+"Hyderabad","India",hyderabad,INR,15.31,5.8,25.13,14.27,74.08
+"Kochi","India",,INR,14.96,5.48,25.52,13.25,68.57
+"Visakhapatnam","India",,INR,14.89,5.37,25.23,13.73,62.48
+"Nagpur","India",,INR,14.63,4.91,23.6,17.89,76.12
+"Coimbatore","India",,INR,14.92,5.64,23.9,14.98,51.61
+"Bhubaneswar","India",,INR,14.22,4.21,24.95,13.37,59.77
+"Cairo","Egypt",cairo,EGP,14.34,5.2,19.06,19.16,28.1
+"Mangalore","India",,INR,14.04,5.47,21.86,11.85,106.45
+"Thiruvananthapuram","India",,INR,12.76,4.99,20.9,11.36,84.83
