@@ -21,7 +21,7 @@
     show tables;
     #+end_src
 
-    Results:
+    #+RESULTS:
     | Tables_in_openflights |
     |-----------------------|
     | airlines              |
