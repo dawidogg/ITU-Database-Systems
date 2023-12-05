@@ -1,5 +1,5 @@
 function gotoRegister() {
-
+    window.location.pathname = ('/register.html')
 }
 
 function gotoMap() {

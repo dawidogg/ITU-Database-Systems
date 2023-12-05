@@ -16,8 +16,14 @@ header {
     padding: 1em;
 }
 
-header button {
-    background-color: #4CAF50;
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+
+	background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -32,3 +38,7 @@ section {
     border: 1px solid #ddd;
 }
 
+label.required::after {
+    content: " *";
+    color: red;
+}
