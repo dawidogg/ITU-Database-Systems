@@ -1,8 +1,11 @@
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+}
+
+body .content {
+	margin-bottom: 10vh;
 }
 
 p {
@@ -41,4 +44,15 @@ section {
 label.required::after {
     content: " *";
     color: red;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #333;
+	color: #fff;
+	padding: 0.5em;
+	text-align: center;
 }
