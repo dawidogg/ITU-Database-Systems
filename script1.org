@@ -3,14 +3,7 @@
     #+begin_src sql
    SHOW DATABASES;
     #+end_src
-   
-    Results:
-    | Database           |
-    |--------------------|
-    | information_schema |
-    | mysql              |
-    | openflights        |
-    | performance_schema |
+
    
     #+begin_src sql :results silent
    create database openflights
@@ -18,18 +11,23 @@
 
     #+begin_src sql
     use openflights;
-    show tables;
+    -- show tables;
+	select * from airlines limit 10;
     #+end_src
 
-    #+RESULTS:
-    | Tables_in_openflights |
-    |-----------------------|
-    | airlines              |
-    | airports              |
-    | countries             |
-    | living_cost           |
-    | planes                |
-    | routes                |
+	| id | name                                         | alias | iata | icao | callsign       | country        | active |
+	|----+----------------------------------------------+-------+------+------+----------------+----------------+--------|
+	| -1 | Unknown                                      | NULL  | -    | N/A  | NULL           | NULL           | Y      |
+	|  1 | Private flight                               | NULL  | -    | N/A  |                |                | Y      |
+	|  2 | 135 Airways                                  | NULL  |      | GNL  | GENERAL        | United States  | N      |
+	|  3 | 1Time Airline                                | NULL  | 1T   | RNX  | NEXTIME        | South Africa   | Y      |
+	|  4 | 2 Sqn No 1 Elementary Flying Training School | NULL  |      | WYT  |                | United Kingdom | N      |
+	|  5 | 213 Flight Unit                              | NULL  |      | TFU  |                | Russia         | N      |
+	|  6 | 223 Flight Unit State Airline                | NULL  |      | CHD  | CHKALOVSK-AVIA | Russia         | N      |
+	|  7 | 224th Flight Unit                            | NULL  |      | TTF  | CARGO UNIT     | Russia         | N      |
+	|  8 | 247 Jet Ltd                                  | NULL  |      | TWF  | CLOUD RUNNER   | United Kingdom | N      |
+	|  9 | 3D Aviation                                  | NULL  |      | SEC  | SECUREX        | United States  | N      |
+
 
 ** airports.csv
    Column format:

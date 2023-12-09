@@ -1,2 +1,0 @@
-* HTML and CSS
-  Test

@@ -6,17 +6,25 @@
 - Denıs Iurıe Davıdoglu - 150200916
 - Mahmut Mert Özdemir - 150200740
 
-# Data source
+# Datadase
 - https://openflights.org/data.html
 - https://www.numbeo.com/cost-of-living/rankings_current.jsp
+- Registered user accounts
+- Randomized fake data
+  - Airlines cost
+  - Interest cost according to country
 
 # Modules
-- [Server](./report/server.md)
-- [HTML layout](./report/html_css.md)
-- [CSS](./report/html_css.md)
-- [Registration page](./report/register.md)
-- [Interactive map](./report/map.md)
-- [Calculator](./report/calc.md)
-- [Order](./report/order.md)
-- [Add to calendar](./report/calendar.md)
-- [Admin page](./report/admin.md)
+## Server
+Python + Flask
+
+### Links
+- https://web.itu.edu.tr/uyar/fad/index.html
+
+## Registration page
+## Interactive map
+## Calculator
+## Order
+## Add to calendar
+## Admin page
+
