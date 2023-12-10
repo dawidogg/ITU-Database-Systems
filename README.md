@@ -11,15 +11,33 @@
 - https://www.numbeo.com/cost-of-living/rankings_current.jsp
 - Registered user accounts
 - Randomized fake data
-  - Airlines cost
-  - Interest cost according to country
-
+  + Airlines cost
+  + Interest cost according to country
+  + Adjust costs according to age (normal distribution)
+	https://www.bls.gov/opub/btn/volume-4/consumer-expenditures-vary-by-age.htm
+	
 # Modules
-## Server
-Python + Flask
+## Backend & Frontend
+### Node.js dependencies (`npm install ...`):
+- react-router-dom
+- react-helmet
+- mysql2
 
-### Links
-- https://web.itu.edu.tr/uyar/fad/index.html
+### MySQL settings
+- user: `root`
+- host: `localhost`
+- password: `<R00tUser>`
+- database: `openflights`
+
+### MySQL quick setup
+- https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html
+```
+mysql> FLUSH PRIVILEGES;
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '<R00tUser>';
+```
+
+### MySQL Node.js Tutorial
+- https://www.youtube.com/watch?v=Hej48pi_lOc
 
 ## Registration page
 ## Interactive map
