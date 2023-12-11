@@ -14,6 +14,16 @@ import Account from "./pages/account";
 import "./App.css"
 
 function App() {
+	const [backendData, setBackendData] = useState([{}])
+
+	fetch("http://localhost:8080/register", {
+		method: 'POST',
+		headers: {"Content-Type": "application/json"},
+		body: JSON.stringify(["One", "Two", "Three"])
+	}).then(() => {
+		console.log("Registered");
+	});
+
 	return (
 		<div>
 			<Router>

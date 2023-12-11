@@ -17,17 +17,45 @@
 	https://www.bls.gov/opub/btn/volume-4/consumer-expenditures-vary-by-age.htm
 	
 # Modules
-## Backend & Frontend
+## Frontend
 ### Node.js dependencies (`npm install ...`):
 - react-router-dom
 - react-helmet
+
+### Sending a request to server
+```
+fetch("http://localhost:8080/register", {
+		method: 'POST',
+		headers: {"Content-Type": "application/json"},
+		body: JSON.stringify(["One", "Two", "Three"])
+	}).then(() => {
+		console.log("Registered");
+	});
+```
+
+## Backend
+### Node.js dependencies (`npm install ...`):
+- express
+- nodemon
 - mysql2
+- dotenv
+
+### Getting a request from client
+```
+app.post("/register", function(request, response) {
+	response.send('ok');
+	console.log(request.body);
+});
+```
+
+### Import database
+`script1.org` constains all the necessary scripts for importing the database from CSV files. Alternatively, `ibd_files` directory contains the database.
 
 ### MySQL settings
 - user: `root`
 - host: `localhost`
 - password: `<R00tUser>`
-- database: `openflights`
+- database: `traveling_cost`
 
 ### MySQL quick setup
 - https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html
