@@ -6,7 +6,7 @@
 - Denıs Iurıe Davıdoglu - 150200916
 - Mahmut Mert Özdemir - 150200740
 
-# Datadase
+# Database
 - https://openflights.org/data.html
 - https://www.numbeo.com/cost-of-living/rankings_current.jsp
 - Registered user accounts
@@ -18,6 +18,12 @@
 	
 # Modules
 ## Frontend
+### Running
+```
+cd ./react_app
+npm start
+```
+
 ### Node.js dependencies (`npm install ...`):
 - react-router-dom
 - react-helmet
@@ -34,6 +40,12 @@ fetch("http://localhost:8080/register", {
 ```
 
 ## Backend
+### Running
+```
+cd ./express_server
+npm start
+```
+
 ### Node.js dependencies (`npm install ...`):
 - express
 - nodemon
