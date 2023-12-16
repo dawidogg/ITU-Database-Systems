@@ -25,8 +25,8 @@ npm start
 ```
 
 ### Node.js dependencies (`npm install ...`):
-- react-router-dom
-- react-helmet
+- react-router-dom (page navigation)
+- react-helmet (change title interactively)
 
 ### Sending a request to server
 ```
@@ -47,10 +47,13 @@ npm start
 ```
 
 ### Node.js dependencies (`npm install ...`):
-- express
-- nodemon
-- mysql2
-- dotenv
+- express (server)
+- nodemon (hot reload pages)
+- mysql2 (database)
+- dotenv (environment variables)
+- shelljs (execute external programs)
+- cors (permissions)
+- bcrypt (encrypt passwords)
 
 ### Getting a request from client
 ```

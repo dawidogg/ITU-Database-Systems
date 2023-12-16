@@ -43,7 +43,7 @@ create table airports (
     primary key (id)
 );
 
-load data infile '/var/lib/mysql/airports.csv'
+load data infile 'csv/airports.csv'
 into table airports
 fields terminated by ','
 enclosed by '"'       
@@ -77,7 +77,7 @@ create table airlines (
     primary key (id)   
 );
 
-load data infile '/var/lib/mysql/airlines.csv'
+load data infile 'csv/airlines.csv'
 into table airlines
 fields terminated by ','
 enclosed by '"'       
@@ -120,7 +120,7 @@ create table routes (
 
 set foreign_key_checks=0;
 use traveling_cost;
-load data infile '/var/lib/mysql/routes.csv'
+load data infile 'csv/routes.csv'
 into table routes
 fields terminated by ','
 enclosed by '"'       
@@ -143,7 +143,7 @@ create table countries (
     primary key (name)
 );	
 
-load data infile '/var/lib/mysql/countries.csv'
+load data infile 'csv/countries.csv'
 into table countries
 fields terminated by ','
 enclosed by '"'       
@@ -167,7 +167,7 @@ create table planes (
     primary key (name)
 );	
 
-load data infile '/var/lib/mysql/planes.csv'
+load data infile 'csv/planes.csv'
 into table planes
 fields terminated by ','
 enclosed by '"'       
@@ -175,10 +175,13 @@ lines terminated by '\n';
 #+end_src
    
 ** cost_of_living_indices.csv
+   :PROPERTIES:
+   :ORDERED:  t
+   :END:
 #+begin_src sql :results silent
 use traveling_cost;
 create table living_cost (
-    city varchar(255) not null,
+    city varchar(255) not null, 
     country varchar(255) not null,
     slug varchar(128),
     currency varchar(10),
@@ -186,12 +189,79 @@ create table living_cost (
     rent_index decimal(5, 2),
     groceries_index decimal(5, 2),
     restaurant_index decimal(5, 2),
-    purchasing_index decimal(5, 2)
+    purchasing_index decimal(5, 2),
+	id int not null auto_increment,
+	primary key (id)
  );	
+#+end_src
 
-load data infile '/var/lib/mysql/cost_of_living_indices.csv'
+#+begin_src sql :results silent
+use traveling_cost;
+load data infile 'csv/cost_of_living_indices.csv'
 into table living_cost
 fields terminated by ','
 enclosed by '"'       
-lines terminated by '\n';
+lines terminated by '\n'
+(city,
+country,
+slug,
+currency,
+avg_index,
+rent_index,
+groceries_index,
+restaurant_index,
+purchasing_index);
+#+end_src
+
+** users
+   | email         |
+   | password_hash |
+   | first_name    |
+   | last_name     |
+   | age           |
+   | interests     |
+   | history       |
+
+#+begin_src sql
+use traveling_cost;
+create table users (
+email varchar(255) not null check(email like '_%@_%' and	length(email) >= 4),
+password_hash varchar(255) not null,
+first_name varchar(255),
+last_name varchar(255),
+age int check (age >= 18),
+interests varchar(255),
+primary key (email)
+);
+#+end_src
+
+#+RESULTS:
+|---|
+
+#+begin_src sql
+use traveling_cost;	
+create table user_history(
+id int not null auto_increment,
+email varchar(255) not null,
+origin_city_id int,
+destination_city_id int,
+days int,
+cost int,	 				 
+time_stamp datetime default current_timestamp(),
+primary key (id),
+foreign key (email) references users(email),
+foreign key	(origin_city_id) references living_cost(id),
+foreign key	(destination_city_id) references living_cost(id)
+)
+#+end_src
+
+#+RESULTS:
+|---|
+
+* Views
+View user data without exposing the password
+#+begin_src sql
+create view user_data_view as
+select email, first_name, last_name, age, interests
+from users;	   
 #+end_src

@@ -5,6 +5,16 @@ const TITLE = 'Account';
 
 const interests = ["Museums", "World Cuisines", "Architecture", "Cultural Events", "Nature", "Shopping", "Alcohol", "Music Festivals", "History", "Art Galleries", "Cycling Adventures"];
 
+function checkCompress(booleanArray) {
+	let sum = 0;
+	for (let i = 0; i < booleanArray.length; i++) {
+		if (booleanArray[i]) {
+			sum += Math.pow(2, i);
+		}
+	}
+	return sum;
+}
+
 function Account() {
 	const [checkedState, setCheckedState] = useState(
 		new Array(interests.length).fill(false)
@@ -15,8 +25,18 @@ function Account() {
 		let data = [];
 		for (let i = 0; i < 5; i++)
 			data.push(e.target[i].value);
-		data.push(checkedState);
+		data.push(checkCompress(checkedState));
 		console.log(data);
+
+		fetch("http://localhost:8080/register", {
+			method: 'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(data),
+		}).then(response => {
+			return response.text();
+		}).then(responseData => {
+			console.log(responseData);
+		});
 	};
 	
 	const loginSubmit = (e) => {
@@ -25,6 +45,17 @@ function Account() {
 		for (let i = 0; i < 2; i++)
 			data.push(e.target[i].value);
 		console.log(data);
+		
+		fetch("http://localhost:8080/login", {
+			method: 'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(data),
+		}).then(response => {
+			return response.text();
+		}).then(responseData => {
+			console.log(responseData);
+		});
+
 	};
 
 	const handleOnChange = (position) => {
