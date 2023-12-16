@@ -57,7 +57,8 @@ export async function login(login_data) {
 		const isMatch = await bcrypt.compare(login_data[1], result["password_hash"]);
 		return isMatch;
 	} catch(e) {
-		return e.message;
+		console.log(e.message);
+		return false;
 	}
 }
 
@@ -73,7 +74,8 @@ export async function getUser(login_data) {
 			return result;
 		}
 	} catch(e) {
-		return e.message;
+		console.log(e.message);
+		return false;
 	}
 }
 
@@ -89,5 +91,21 @@ export async function getUserHistory(login_data) {
 		}
 	} catch(e) {
 		return e.message;
+	}
+}
+
+export async function deleteUser(login_data) {
+	try {
+		const authentificated = await login(login_data);
+		if (authentificated) {
+			const [result] = await pool.query(
+				`delete from users where email=?;`,	   
+				login_data[0]
+			);
+			return result;
+		}
+	} catch(e) {
+		console.log(e.message);
+		return false;
 	}
 }

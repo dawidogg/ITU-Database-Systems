@@ -12,7 +12,6 @@ export default function Header(props) {
 					<li><NavLink className="button" to="map"><img/>Map</NavLink></li>
 					<li><NavLink className="button" to="calculator"><img/>Calculator</NavLink></li>
 					<li><NavLink className="button" to="order"><img/>Order</NavLink></li>
-					<li><NavLink className="button" to="calendar"><img/>Calendar</NavLink></li>
 					<li><NavLink className="button" to="admin"><img/>Admin</NavLink></li>
 					<li><NavLink className="button_img" to="account"><img src={user_icon}/> {props.account_name}</NavLink></li>
 				</ul>

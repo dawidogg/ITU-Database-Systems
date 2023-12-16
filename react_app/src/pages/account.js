@@ -15,7 +15,7 @@ function checkCompress(booleanArray) {
 	return sum;
 }
 
-function Account() {
+function Account(props) {
 	const [checkedState, setCheckedState] = useState(
 		new Array(interests.length).fill(false)
 	);
@@ -38,7 +38,7 @@ function Account() {
 			console.log(responseData);
 		});
 	};
-	
+
 	const loginSubmit = (e) => {
 		e.preventDefault();
 		let data = [];
@@ -54,10 +54,31 @@ function Account() {
 			return response.text();
 		}).then(responseData => {
 			console.log(responseData);
+			if (responseData === 'true') {
+				props.onLogin(data);
+			} else {
+				props.onLogin(null);
+			}
 		});
-
 	};
 
+	const logout = () => {
+		props.onLogin(null);
+	};
+	
+	const deleteAccount = () => {
+		fetch("http://localhost:8080/delete_user", {
+			method: 'DELETE',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(props.user_credentials),
+		}).then(response => {
+			return response.text();
+		}).then(responseData => {
+			console.log(responseData);
+		});
+		props.onLogin(null);
+	};
+	
 	const handleOnChange = (position) => {
 		const updatedCheckedState = checkedState.map((item, index) =>
 			index === position ? !item : item
@@ -66,67 +87,88 @@ function Account() {
 		setCheckedState(updatedCheckedState);
 	};
 
+	if (props.user_data == null)
+		return (
+			<main className="account">
+				<Helmet>
+					<title> {TITLE} </title>
+				</Helmet>
+				<div>
+					<form onSubmit={registerSubmit}>
+						<h1>Register</h1>
+						<h2> General </h2>
+						<div className="general">
+ 							<label className="required" htmlFor="email">Email:</label>
+							<input type="text" id="email" name="email" required/> 
 
-	return (
-		<main>
-			<Helmet>
-				<title> {TITLE} </title>
-			</Helmet>
-			<div>
-				<h1>Register</h1>
-				
-				<form onSubmit={registerSubmit}>
-					<h2> General </h2>
+							<label className="required" htmlFor="password">Password:</label>
+							<input type="password" id="password" name="password" required/>
 
- 					<label className="required" htmlFor="email">Email:</label>
-					<input type="text" id="email" name="email" required/> <br/>
-					<label className="required" htmlFor="password">Password:</label>
-					<input type="password" id="password" name="password" required/> <br/>
+							<label className="required" htmlFor="firstname">First name:</label>
+							<input type="text" id="firstname" name="firstname" required/> 
 
-					<label className="required" htmlFor="firstname">First name:</label>
-					<input type="text" id="firstname" name="firstname" required/> <br/>
-					<label className="required" htmlFor="lastname">Last name:</label>
-					<input type="text" id="lastname" name="lastname" required/> <br/>
-					<label className="required" htmlFor="age">Age:</label>
-					<input type="number" id="age" name="age" required/> <br/>
+							<label className="required" htmlFor="lastname">Last name:</label>
+							<input type="text" id="lastname" name="lastname" required/>
 
-					<h2> Interests </h2>
-					<ul>
-					{interests.map((name, index) => {
-						return (
-							<li key={index}>
-								<div className="interests-list-item">
-									<input
-										type="checkbox"
-										id={`custom-checkbox-${index}`}
-										name={name}
-										value={name}
-										checked={checkedState[index]}
-										onChange={() => handleOnChange(index)}
-									/>
-									<label htmlFor={`custom-checkbox-${index}`}>{name}</label>
-								</div>
-							</li>
-						);
-					})}
-					</ul>
-					<input type="submit" name="Submit"/> 
-				</form>
-			</div>
+							<label className="required" htmlFor="age">Age:</label>
+							<input type="number" id="age" name="age" required/> 
+						</div>
+						<h2> Interests </h2>
+						<ul>
+							{interests.map((name, index) => {
+								return (
+									<li key={index}>
+										<input
+											type="checkbox"
+											id={`custom-checkbox-${index}`}
+											name={name}
+											value={name}
+											checked={checkedState[index]}
+											onChange={() => handleOnChange(index)}
+										/>
+										<label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+									</li>
+								);
+							})}
+						</ul>
+						<br/>
+						<div className="submit">
+							<input type="submit" name="Submit"/> 
+						</div>
+					</form>
+				</div>
 
-			<div>
-				<h1> Login </h1>
-				<form onSubmit={loginSubmit}>
-					<label className="required" htmlFor="email2">Email:</label>
-					<input type="text" id="email2" name="email2" required/> <br/>
-					<label className="required" htmlFor="password2">Password:</label>
-					<input type="password" id="password2" name="password2" required/> <br/>
-					<input type="submit" name="Submit"/> 
-				</form>
-			</div>
-		</main>
-	);
-
+				<div>
+					<form onSubmit={loginSubmit}>
+						<h1> Login </h1>
+						<h2> &nbsp; </h2>
+						<div className="general">
+							<label className="required" htmlFor="email2">Email:</label>
+							<input type="text" id="email2" name="email2" required/>
+							
+							<label className="required" htmlFor="password2">Password:</label>
+							<input type="password" id="password2" name="password2" required/> 
+						</div>
+						<br/>
+						<div className="submit">
+							<input type="submit" name="Submit"/>
+						</div>
+					</form>
+				</div>
+			</main>
+		);
+	else
+		return (
+			<main>
+				<div>
+				<h1>Welcome, {props.user_data["first_name"]} {props.user_data["last_name"]}</h1>
+				<h2> History</h2>
+					<div className="logged_in_buttons">
+						<button onClick={logout}>Logout</button>
+						<button onClick={deleteAccount}>Delete account</button>
+					</div>
+				</div>
+			</main>);
 
 }
 export default Account;

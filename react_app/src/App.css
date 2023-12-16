@@ -38,6 +38,26 @@ form ul {
   padding: 0;
 }
 
+form div.general {
+	display:grid;
+    grid-template-columns: max-content max-content;
+    grid-gap:5px;
+}
+
+form h1 {
+	text-align: center;
+}
+
+form div.submit {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+form div.general label {
+	text-align:right; 
+}
+
 .button {
 	display: flex;
     -webkit-appearance: button;
@@ -112,4 +132,24 @@ footer {
 	color: #fff;
 	padding: 0.5em;
 	text-align: center;
+}
+
+main.account {
+	display: flex;
+	position: relative;
+	justify-content: center;
+}
+
+main > div {
+	padding: 1em;
+}
+
+.logged_in_buttons {
+	display: flex;
+	position: relative;
+	justify-content: center;
+}
+
+.logged_in_buttons button{
+	margin: 0.5em;
 }
