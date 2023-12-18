@@ -112,6 +112,10 @@ form div.general label {
 	padding-bottom: 2px;
 }
 
+.button_plane img{
+	height: 2em;
+}
+
 section {
     padding: 20px;
     margin: 10px;
@@ -152,4 +156,31 @@ main > div {
 
 .logged_in_buttons button{
 	margin: 0.5em;
+}
+
+div.dropdown_line {
+	display: flex;
+}
+
+.airline_thumbnail img {
+	width: 50%;
+	height: auto;
+	margin: auto; 
+}
+
+.airline_thumbnail {
+	display: flex;
+	height: 80%;
+	justify-content: center;
+	align-items: center;
+}
+
+div.card {
+	width: 200px;
+	height: 200px;
+}
+
+div.card_price {
+	position: absolute;
+	bottom: 0;
 }

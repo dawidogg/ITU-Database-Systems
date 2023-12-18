@@ -9,6 +9,7 @@
 # Database
 - https://openflights.org/data.html
 - https://www.numbeo.com/cost-of-living/rankings_current.jsp
+- https://github.com/sexym0nk3y/airline-logos
 - Registered user accounts
 - Randomized fake data
   + Airlines cost
@@ -27,6 +28,9 @@ npm start
 ### Node.js dependencies (`npm install ...`):
 - react-router-dom (page navigation)
 - react-helmet (change title interactively)
+- react-native
+- react-native-web
+- react-horizontal-scrolling-menu
 
 ### Sending a request to server
 ```
@@ -85,6 +89,10 @@ mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '<R00tUser>';
 ## Registration page
 ## Interactive map
 ## Calculator
+- Formula: Daily expenses (Mert) + Hotel (Mert)
+- Plane. Airline options. Direct and transit flights. Show three cheapest.
+- Interests fee and Tour description using OpenAI
+- Adjust total cost according to age group
 ## Order
 ## Add to calendar
 ## Admin page

@@ -52,4 +52,7 @@ app.post("/user_data", async function(req, res) {
 		res.status(200).send(result);
 });
 
+// http://localhost:8080/static/airline_logos/MLD.png
+
+app.use('/static', express.static('public'))
 app.listen(8080);
