@@ -1,0 +1,19 @@
+/* static/css/style.css */
+
+#map {
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    width: 100vw;  /* Set the width to 100% of the viewport width */
+}
+
+.airport-label {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+
