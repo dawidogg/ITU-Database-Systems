@@ -12,7 +12,8 @@ const TITLE = 'Calculator';
 
 export default function Calculator(props) {
 	const cities = ["Istanbul-Bucharest", "Bucharest-Chisinau", "Chisinau-Moscow", "Moscow-Paris", "Paris-Istanbul"];
-	const airlines = ["MLD","THY","PPL","AFL"];
+	const airline_names = ["Air Moldova", "Turkish Hairlines", "Pegasus", "Aeroflot", "Air Moldova", "Turkish Hairlines", "Pegasus", "Aeroflot"]
+	const airlines = ["MLD","THY","PPL","AFL", "MLD","THY","PPL","AFL"];
 	const defaultOption = cities[0];
 
 	const drop_down_change = (e) => {
@@ -64,11 +65,12 @@ export default function Calculator(props) {
 				<input type="number" id="days" name="days" required/> 
 
 				<ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-					{cities.map((name, index) => {
+					{airline_names.map((name, index) => {
 						return (<Card
 									itemId={index} 
-									airline_name={name}
-									airline_code={airlines[index]}
+									airline_name={[name, name]}
+									airline_code={[airlines[index], airlines[index]]}
+									route={[cities[0], cities[1]]}
 									price={150}
 									key={index}
 								/>)
@@ -81,17 +83,33 @@ export default function Calculator(props) {
 		</main>
 	);
 
-	function Card({itemId, airline_name, airline_code, price}) {
+	function Card({itemId, airline_name, airline_code, price, route}) {
 		const visibility = React.useContext(VisibilityContext);
-		return (
-			<div className="card">
-				<div>Airline: {airline_name} </div>
-				<div className="airline_thumbnail">
-					<img src={airline_logos[airline_code]} className=""/>
+		if (airline_name.length == 1 || airline_name[0][0] == 'A')
+			return (
+				<div className="card">
+					<div>Airline: {airline_name[0]} </div>
+					<div>Route: {route[0]} </div>
+					<div className="airline_thumbnail">
+						<img src={airline_logos[airline_code[0]]} />
+					</div>
+					<div>Price: ${price} </div>
 				</div>
-				<div>Price: ${price} </div>
-			</div>
-		);
+			);
+		if (airline_name.length == 2)
+			return (
+				<div className="card_wide">
+					<div>Airlines: {airline_name[0]} and {airline_name[1]}</div>
+					<div>Route: {route[0]}, {route[1]}</div>
+					<div className="airline_thumbnail">
+						<img src={airline_logos[airline_code[0]]} />
+						<img src={airline_logos[airline_code[1]]} />
+					</div>
+					<div >Price: ${price} </div>
+				</div>
+			);
+		else
+			console.log("Error, invalid number of airlines");
 	}
 
 	function LeftArrow() {

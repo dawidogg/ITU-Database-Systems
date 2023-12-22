@@ -81,6 +81,8 @@ app.post("/register", function(request, response) {
 ```
 mysql> FLUSH PRIVILEGES;
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '<R00tUser>';
+mysql> SET GLOBAL log_bin_trust_function_creators = 1;
+mysql> SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 ```
 
 ### MySQL Node.js Tutorial

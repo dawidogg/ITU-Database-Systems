@@ -162,15 +162,21 @@ div.dropdown_line {
 	display: flex;
 }
 
-.airline_thumbnail img {
+div.card .airline_thumbnail img {
 	width: 50%;
+	height: auto;
+	margin: auto; 
+}
+
+div.card_wide .airline_thumbnail img {
+	width: 25%;
 	height: auto;
 	margin: auto; 
 }
 
 .airline_thumbnail {
 	display: flex;
-	height: 80%;
+	height: 70%;
 	justify-content: center;
 	align-items: center;
 }
@@ -178,6 +184,13 @@ div.dropdown_line {
 div.card {
 	width: 200px;
 	height: 200px;
+	text-align: center;
+}
+
+div.card_wide {
+	width: 400px;
+	height: 200px;
+	text-align: center;
 }
 
 div.card_price {
