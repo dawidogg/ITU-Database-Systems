@@ -11,7 +11,7 @@ import plane_left from "../images/plane-left.svg";
 const TITLE = 'Calculator';
 
 export default function Calculator(props) {
-	const cities = ["Istanbul-Bucharest", "Bucharest-Chisinau", "Chisinau-Moscow", "Moscow-Paris", "Paris-Istanbul"];
+	const cities = ["Istanbul", "Bucharest", "Chisinau", "Moscow", "Paris"];
 	const airline_names = ["Air Moldova", "Turkish Hairlines", "Pegasus", "Aeroflot", "Air Moldova", "Turkish Hairlines", "Pegasus", "Aeroflot"]
 	const airlines = ["MLD","THY","PPL","AFL", "MLD","THY","PPL","AFL"];
 	const defaultOption = cities[0];
@@ -68,9 +68,10 @@ export default function Calculator(props) {
 					{airline_names.map((name, index) => {
 						return (<Card
 									itemId={index} 
-									airline_name={[name, name]}
-									airline_code={[airlines[index], airlines[index]]}
-									route={[cities[0], cities[1]]}
+									count={1}
+									airline_name={[name]}
+									airline_code={[airlines[index]]}
+									route={[cities[0]]}
 									price={150}
 									key={index}
 								/>)
@@ -83,33 +84,21 @@ export default function Calculator(props) {
 		</main>
 	);
 
-	function Card({itemId, airline_name, airline_code, price, route}) {
+	function Card({itemId, count, airline_name, airline_code, route, price}) {
 		const visibility = React.useContext(VisibilityContext);
-		if (airline_name.length == 1 || airline_name[0][0] == 'A')
-			return (
-				<div className="card">
-					<div>Airline: {airline_name[0]} </div>
-					<div>Route: {route[0]} </div>
-					<div className="airline_thumbnail">
-						<img src={airline_logos[airline_code[0]]} />
-					</div>
-					<div>Price: ${price} </div>
+		const stops = route.subarray(1, -1);
+		return (
+			<div className={"card_"+count}>
+				<div>Airline{(count == 1) ? '' : 's'}: {" "+airline_name} </div>
+				<div>{(count == 1) ? 'Direct flight' : ('Stops at '+ stops)} </div>
+				<div className="airline_thumbnail">
+					{airline_code.map((obj, index) => {
+						return (<img src={airline_logos[obj]} />)
+					})}
 				</div>
-			);
-		if (airline_name.length == 2)
-			return (
-				<div className="card_wide">
-					<div>Airlines: {airline_name[0]} and {airline_name[1]}</div>
-					<div>Route: {route[0]}, {route[1]}</div>
-					<div className="airline_thumbnail">
-						<img src={airline_logos[airline_code[0]]} />
-						<img src={airline_logos[airline_code[1]]} />
-					</div>
-					<div >Price: ${price} </div>
-				</div>
-			);
-		else
-			console.log("Error, invalid number of airlines");
+				<div>Price: ${price} </div>
+			</div>
+		);
 	}
 
 	function LeftArrow() {
@@ -131,3 +120,8 @@ export default function Calculator(props) {
 		);
 	}
 }
+
+Array.prototype.subarray = function(start, end) {
+    if (!end) { end = -1; } 
+    return this.slice(start, this.length + 1 - (end * -1));
+};

@@ -51,7 +51,6 @@ lines terminated by '\n';
 #+end_src
 
 ** airlines.csv
-   
 *** Column format:
 	| Airline ID | Unique OpenFlights identifier for this airline.                                      |
 	| Name       | Name of the airline.                                                                 |
@@ -150,6 +149,7 @@ enclosed by '"'
 lines terminated by '\n';
 #+end_src
    
+
 ** planes.csv
 *** Column format:
    | Name      | Full name of the aircraft.                            |
@@ -255,6 +255,40 @@ foreign key	(destination_city_id) references living_cost(id)
 )
 #+end_src
 
+** airline_costs
+#+begin_src sql
+use traveling_cost;
+drop table airline_costs;
+create table airline_costs (
+	id int not null,
+	category int, check (category >= 1 and category <= 5),
+	primary key (id),
+	foreign key (id) references airlines(id)
+);
+drop procedure generate_airline_costs;
+delimiter $$
+create procedure generate_airline_costs()
+    begin
+        declare i int;
+		declare airlines_count int;
+        set i = 0;
+		set airlines_count = (select count(*) from airlines);
+        start transaction;
+		delete from airline_costs;
+        while i < airlines_count do
+            insert into airline_costs (select id, (1 + ceil(rand()*4)) from airlines limit 1 offset i) ;
+            set i = i + 1;
+        end while;
+        commit;
+    end$$
+delimiter ;
+
+call generate_airline_costs();
+#+end_src
+
+#+RESULTS:
+|---|
+
 * Views
 View user data without exposing the password
 #+begin_src sql
@@ -266,20 +300,11 @@ from users;
 * Distance between airports 
 #+begin_src sql
 use traveling_cost;
-drop function distance_between_airports;		  
+-- drop function distance_between_airports;
 delimiter $$
 create function distance_between_airports(a int, b int) returns int
 begin
-return (SELECT ST_Distance_Sphere(
-point((select longitude from airports where id = a), (select latitude from airports where id = a)),
-point((select longitude from airports where id = b), (select latitude from airports where id = b))			  
-)); 
-end$$
-delimiter ; 
-delimiter $$
-create function distance_between_airports(a int, b int) returns int
-begin
-return (SELECT ST_Distance_Sphere(
+return (select ST_Distance_Sphere(
 point((select longitude from airports where id = a), (select latitude from airports where id = a)),
 point((select longitude from airports where id = b), (select latitude from airports where id = b))			  
 )); 
@@ -292,16 +317,21 @@ delimiter ;
 use traveling_cost;
 drop function closest_airport;
 delimiter $$
-create function closest_airport(p point) returns int
+
+create function closest_airport(p_lat double, p_long double) returns int
+deterministic
 begin
-
-where () min()
-
+return (select id
+		from airports
+		order by ST_Distance_Sphere(
+		point(longitude, latitude), 
+		point(p_long, p_lat)
+		) limit 1);
 end$$
-delimiter ;		
+delimiter ;  
 #+end_src
-  
 
+* Calculate indirect routes and show all details
 #+begin_src sql
 use traveling_cost;
 select 6124 into @source;
@@ -358,4 +388,25 @@ where (a0.id =    intermediate.a0 and
 		  a2.id = intermediate.a2 and
 		  a3.id = intermediate.a3);	
 #+end_src
+
+* Get airlines data from route
+#+begin_src sql
+use traveling_cost;
+select airlines.name, airlines.icao, airline_costs.category
+from routes, airlines, airline_costs
+where 
+airlines.id = routes.airline_id and
+airline_costs.id = routes.airline_id and
+routes.src_airport_id=344 and
+routes.dest_airport_id=1688;
+#+end_src
+
+#+RESULTS:
+| name              | icao | category |
+|-------------------+------+----------|
+| Germanwings       | GWI  |        2 |
+| Air Berlin        | BER  |        3 |
+| Condor Flugdienst | CFG  |        5 |
+| TUIfly            | HLX  |        4 |
+| SunExpress        | SXS  |        4 |
 

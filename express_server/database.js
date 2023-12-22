@@ -107,11 +107,17 @@ export async function deleteUser(login_data) {
 	}
 }
 
-export async function getAirlinesDirect(source_id, destination_id) {
+export async function getAirlines(source_id, destination_id) {
 	try {
 		const [result] = await pool.query(
-			`select airline_id from routes where src_airport_id=? and dest_airport_id=?;`,
-			source_id, destination_id
+			`select airlines.name, airlines.icao, airline_costs.category
+			from routes, airlines, airline_costs
+			where 
+			airlines.id = routes.airline_id and
+			airline_costs.id = routes.airline_id and
+			routes.src_airport_id=? and
+			routes.dest_airport_id=?;`,
+			[source_id, destination_id]
 		);
 		return result;
 	} catch(e) {
@@ -120,19 +126,19 @@ export async function getAirlinesDirect(source_id, destination_id) {
 	} 
 }
 
-export async function getCityCountry(airport_id) {
-	try {
-		const [result] = await pool.query(
-			`select city, country from airports
-			where id = ?`,
-			airport_id
-		);
-		return result;
-	} catch(e) {
-		console.log(e.message);
-		return false;
-	}  	
-}
+// export async function getCityCountry(airport_id) {
+// 	try {
+// 		const [result] = await pool.query(
+// 			`select city, country from airports
+// 			where id = ?`,
+// 			airport_id
+// 		);
+// 		return result;
+// 	} catch(e) {
+// 		console.log(e.message);
+// 		return false;
+// 	}  	
+// }
 
 export async function getRoutes(source_id, destination_id, lim) {
 	try {
@@ -200,5 +206,8 @@ export async function getRoutes(source_id, destination_id, lim) {
 
 export async function getPlaneOffers(source_id, destination_id) {
 	const routes = await getRoutes(source_id, destination_id, 20);
+	for (r of routes) {
+		
+	}
 	return false;
 }
