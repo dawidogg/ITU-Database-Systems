@@ -21,7 +21,10 @@ app.get('/', function(req, res) {
 app.post("/register", async function(req, res) {
 	console.log(req.body);
 	let result = await db.newUser(req.body);
-	res.send(result);
+	if (result === false)
+		res.status(400).send(result);
+	else 
+		res.status(200).send(result);
 	console.log(result);
 });
 
@@ -50,6 +53,25 @@ app.post("/user_data", async function(req, res) {
 		res.status(400).send(result);
 	else 
 		res.status(200).send(result);
+});
+
+app.get("/plane_offers/:source/:destination", async function(req, res) {
+	console.log(req.body);
+	let result = await db.getPlaneOffers(req.params.source, req.params.destination);
+	if (result === false)
+		res.status(400).send(result);
+	else 
+		res.status(200).send(result);
+});
+
+app.post("/post_history", async function(req, res) {
+	console.log(req.body);
+	let result = await db.postUserHistory(req.body);
+	if (result === false)
+		res.status(400).send(result);
+	else 
+		res.status(200).send(result);
+	console.log(result);
 });
 
 app.use('/static', express.static('public'))

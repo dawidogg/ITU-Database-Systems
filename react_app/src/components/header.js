@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {NavLink, Link} from "react-router-dom"
 import user_icon from "../images/user_icon.png";
-import voyify_logo from "../images/Voyify.png";
+import voyify_logo from "../images/voyify-transparent.png";
 
 export default function Header(props) {
 	return(

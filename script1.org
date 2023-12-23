@@ -239,21 +239,24 @@ primary key (email)
 |---|
 
 #+begin_src sql
-use traveling_cost;	
+use traveling_cost;
 create table user_history(
 id int not null auto_increment,
 email varchar(255) not null,
-origin_city_id int,
-destination_city_id int,
+origin_airport_id int,
+destination_airport_id int,
 days int,
 cost int,	 				 
 time_stamp datetime default current_timestamp(),
 primary key (id),
 foreign key (email) references users(email),
-foreign key	(origin_city_id) references living_cost(id),
-foreign key	(destination_city_id) references living_cost(id)
+foreign key	(origin_airport_id) references airports(id),
+foreign key	(destination_airport_id) references airports(id)
 )
 #+end_src
+
+#+RESULTS:
+|---|
 
 ** airline_costs
 #+begin_src sql
@@ -334,8 +337,8 @@ delimiter ;
 * Calculate indirect routes and show all details
 #+begin_src sql
 use traveling_cost;
-select 6124 into @source;
-select 1075 into @destination;
+select 344 into @source;
+select 1688 into @destination;
 	   
 with intermediate as
 (select distinct 

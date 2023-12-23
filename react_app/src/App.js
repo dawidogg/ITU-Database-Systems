@@ -16,7 +16,8 @@ function App() {
 	const [account_name, setAccountName] = useState('Account');
 	const [user_data, setUserData] = useState(null);
 	const [user_credentials, setUserCredentials] = useState(null);
-
+	const [airports, set_airports] = useState([344, 1688]);
+	
 	useEffect(() => {
 		if (user_credentials != null) {
 			fetch("http://localhost:8080/user_data", {
@@ -48,7 +49,8 @@ return (
 				<Route path='/' element={<Home/>}/>
 				<Route path='/home' element={<Home/>}/>
 				<Route path='/map' element={<Map/>}/>
-				<Route path='/calculator' element={<Calculator/>}/>
+				<Route path='/calculator' element=
+					   {<Calculator origin={airports[0]} destination={airports[1]} user_credentials={user_credentials}/>}/>
 				<Route path='/order' element={<Order/>}/>
 				<Route path='/admin' element={<Admin/>}/>
 				<Route path='/account' element=

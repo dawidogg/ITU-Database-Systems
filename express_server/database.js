@@ -91,6 +91,23 @@ export async function getUserHistory(login_data) {
 	}
 }
 
+export async function postUserHistory(data) {
+	try {
+		const login_data = data[0];
+		const authentificated = await login(login_data);
+		if (authentificated) {
+			const [result] = await pool.query(
+				`insert into user_history (email, origin_airport_id,
+				destination_airport_id, days, cost)
+				values (?, ?, ?, ?, ?);`, 
+				[login_data[0], data[1], data[2], data[3], data[4]]);
+			return result;
+		}
+	} catch(e) {
+		return e.message;
+	}
+}
+
 export async function deleteUser(login_data) {
 	try {
 		const authentificated = await login(login_data);
@@ -121,18 +138,17 @@ export async function getAirlines(source_id, destination_id) {
 		);
 		return result;
 	} catch(e) {
-		console.log(e.message);
+		console.log("getAirlines: "+e.message);
 		return false;
 	} 
 }
 
 export async function getRoutes(source_id, destination_id, lim) {
 	try {
+		await pool.query(`select ? into @source;`, source_id);
+		await pool.query(`select ? into @destination;`, destination_id);
 		const [result] = await pool.query(
-			`select ? into @source;
-			select ? into @destination;
-				   
-			with intermediate as
+			`with intermediate as
 			(select distinct 
 					lvl0.src_airport_id as a0,
 				    lvl1.src_airport_id as a1,
@@ -181,24 +197,131 @@ export async function getRoutes(source_id, destination_id, lim) {
 			where (a0.id = intermediate.a0 and
 					  a1.id = intermediate.a1 and
 					  a2.id = intermediate.a2 and
-					  a3.id = intermediate.a3);	`
-			[source_id, destination_id, lim])
+					  a3.id = intermediate.a3);`,
+			lim);
 			return result;
 		} catch(e) {
-			console.log(e.message);
+			console.log("getRoutes: "+e.message);
 			return false;
 		}
 }
 
-// Card({itemId, count, airline_name, airline_code, route, price})
+export async function getDistanceAirports(source_id, destination_id) {
+	try {
+		let [result] = await pool.query(
+			`select distance_between_airports(?, ?);`,
+			[source_id, destination_id]
+		);
+		result = (Object.values(result[0]))[0];
+		return result;
+	} catch(e) {
+		console.log("getDistanceAirports: "+e.message);
+		return false;
+	} 
+}
+
+function getPlanePrice(category, distance) {
+	return Math.floor((1/(category*category+5) * distance/1000));
+}
+
+const INDIRECT1_MAX = 5;
+const INDIRECT2_MAX = 5;
+
+const shuffle = (array) => { 
+  for (let i = array.length - 1; i > 0; i--) { 
+    const j = Math.floor(Math.random() * (i + 1)); 
+    [array[i], array[j]] = [array[j], array[i]]; 
+  } 
+  return array; 
+};
 
 export async function getPlaneOffers(source_id, destination_id) {
 	const routes = await getRoutes(source_id, destination_id, 20);
-	for (r of routes) {
-		
+	let cards0 = [];
+	let cards1 = [];
+	let cards2 = [];
+	for (let r of routes) {
+		let flight_count = -1;
+		for (let i = 0; i <= 3; i++)
+			if (r["airport"+i.toString()+"_id"] != -1)
+				flight_count++;
+		r["flight_count"] = flight_count;
+
+		let route_cities = [];
+		for (let i = 0; i <= flight_count; i++)
+			route_cities.push(r["airport"+i+"_city"])
+		const distance0 = await getDistanceAirports(r["airport0_id"], r["airport1_id"]);
+		const distance1 = await getDistanceAirports(r["airport1_id"], r["airport2_id"]);
+		const distance2 = await getDistanceAirports(r["airport2_id"], r["airport3_id"]);
+		const airlines0 = await getAirlines(r["airport0_id"], r["airport1_id"]);
+		const airlines1 = await getAirlines(r["airport1_id"], r["airport2_id"]);
+		const airlines2 = await getAirlines(r["airport2_id"], r["airport3_id"]);
+
+		if (airlines2 === false && flight_count == 3) 
+			flight_count == 2;
+		if (airlines1 === false && flight_count == 2) 
+			flight_count == 1;
+		if (airlines0 === false && flight_count == 1) 
+			flight_count == 0;
+
+		// Card({count, airline_name, airline_code, route, price})
+		if (flight_count == 1) {
+			for (let j = 0; j < airlines0.length; j++) {
+				let card = [];
+				card.push(1);
+				card.push([airlines0[j]["name"]]);
+				card.push([airlines0[j]["icao"]]);
+				card.push(route_cities);
+				card.push(getPlanePrice(airlines0[j]["category"], distance0));
+				cards0.push(card);
+			}
+		}
+
+		if (flight_count == 2) {		
+			let pairs = [];
+			for (let i = 0; i < airlines0.length; i++)
+				for (let j = 0; j < airlines1.length; j++)
+					pairs.push([i, j]);
+			shuffle(pairs);
+			for (let i = 0; cards1.length < INDIRECT1_MAX && i < pairs.length; i++) {
+				const x = pairs[i][0];
+				const y = pairs[i][1];
+				let card = [];
+				card.push(2);
+				card.push([airlines0[x]["name"], airlines1[y]["name"]]);
+				card.push([airlines0[x]["icao"], airlines1[y]["icao"]]);
+				card.push(route_cities);
+				card.push(getPlanePrice(airlines0[x]["category"], distance0)+
+						  getPlanePrice(airlines1[y]["category"], distance1));
+				cards1.push(card);
+			}
+		}
+
+		if (flight_count == 3) {
+			let pairs = [];
+			for (let i = 0; i < airlines0.length; i++)
+				for (let j = 0; j < airlines1.length; j++)
+					for (let k = 0; k < airlines2.length; k++)
+						pairs.push([i, j, k]);
+			shuffle(pairs);
+			for (let i = 0; cards2.length < INDIRECT2_MAX && i < pairs.length; i++) {
+				const x = pairs[i][0];
+				const y = pairs[i][1];
+				const z = pairs[i][2];
+				let card = [];
+				card.push(3);
+				card.push([airlines0[x]["name"], airlines1[y]["name"], airlines2[z]["name"]]);
+				card.push([airlines0[x]["icao"], airlines1[y]["icao"], airlines2[z]["icao"]]);
+				card.push(route_cities);
+				card.push(getPlanePrice(airlines0[x]["category"], distance0)+
+						  getPlanePrice(airlines1[y]["category"], distance1)+
+						  getPlanePrice(airlines2[z]["category"], distance2));
+				cards2.push(card);
+			}
+		}
+
 	}
-	return false;
+	let result = cards0.concat(cards0, cards1, cards2);
+	return result;
 }
 
-const test = await getAirlines(344, 1688);
-console.log(test[0]["name"]);

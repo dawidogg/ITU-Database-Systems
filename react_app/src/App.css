@@ -13,7 +13,7 @@ p {
 }
 
 header {
-    background-color: #333;
+    background-color: #003;
     color: #fff;
     padding: 1em;
 	position: relative;
@@ -22,7 +22,7 @@ header {
 }
 @media (max-width:1000px) {
 	header {
-		background-color: #333;
+		background-color: #003;
 		color: #fff;
 		padding: 1em;
 		position: relative;
@@ -88,10 +88,11 @@ form div.general label {
 	vertical-align: middle;
 
 	align-items:center;
-	background-color: #4CAF50;
+	background-color: #11378f;
 	color: white;
 	padding: 0 0.5em;
-    border: none;
+    border-color: white;
+	border-style: solid;
     border-radius: 4px;
     cursor: pointer;
 	margin: 0 5px;
@@ -106,10 +107,11 @@ form div.general label {
 	vertical-align: middle;
 
 	align-items:center;
-	background-color: white;
+	background-color: #f2541d;
 	color: black;
 	padding: 0 0.5em;
-    border: none;
+    border-color: white;
+	border-style: solid;
     border-radius: 4px;
     cursor: pointer;
 	margin: 0 5px;
@@ -201,22 +203,38 @@ div.card_3 .airline_thumbnail img {
 	margin: auto; 
 }
 
-div.card_1 {
-	width: 200px;
+div.card {
 	height: 200px;
 	text-align: center;
+	border-radius: 10px;
+	border: 2px solid #11378f;
+	margin: 1em;
+}
+
+div.clicked_card {
+	height: 200px;
+	text-align: center;
+	border-radius: 10px;
+	border: 2px solid #11378f;
+	margin: 1em;
+	background-color: #cae1ff;
+}
+
+div.card:hover {
+	background-color: #cae1ff;
+	cursor: pointer;
+}
+
+div.card_1 {
+	width: 200px;
 }
 
 div.card_2 {
 	width: 400px;
-	height: 200px;
-	text-align: center;
 }
 
 div.card_3 {
 	width: 600px;
-	height: 200px;
-	text-align: center;
 }
 
 div.card_price {
@@ -229,4 +247,11 @@ div.card_price {
 	height: 70%;
 	justify-content: center;
 	align-items: center;
+}
+
+.react-horizontal-scrolling-menu--scroll-container  {
+  /* this makes sure the padding and the border is included in the box sizing */
+  box-sizing: border-box;
+  overflow-y: hidden;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
