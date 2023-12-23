@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
 import {NavLink, Link} from "react-router-dom"
 import user_icon from "../images/user_icon.png";
+import voyify_logo from "../images/Voyify.png";
 
 export default function Header(props) {
 	return(
 		<header>
-			<h1>Traveling cost estimation</h1>
+			<img src={voyify_logo} />
 			<nav>
 				<ul>
 					<li><NavLink className="button" to="home"><img/>Home</NavLink></li>

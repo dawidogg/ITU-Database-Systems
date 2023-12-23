@@ -126,20 +126,6 @@ export async function getAirlines(source_id, destination_id) {
 	} 
 }
 
-// export async function getCityCountry(airport_id) {
-// 	try {
-// 		const [result] = await pool.query(
-// 			`select city, country from airports
-// 			where id = ?`,
-// 			airport_id
-// 		);
-// 		return result;
-// 	} catch(e) {
-// 		console.log(e.message);
-// 		return false;
-// 	}  	
-// }
-
 export async function getRoutes(source_id, destination_id, lim) {
 	try {
 		const [result] = await pool.query(
@@ -204,6 +190,8 @@ export async function getRoutes(source_id, destination_id, lim) {
 		}
 }
 
+// Card({itemId, count, airline_name, airline_code, route, price})
+
 export async function getPlaneOffers(source_id, destination_id) {
 	const routes = await getRoutes(source_id, destination_id, 20);
 	for (r of routes) {
@@ -211,3 +199,6 @@ export async function getPlaneOffers(source_id, destination_id) {
 	}
 	return false;
 }
+
+const test = await getAirlines(344, 1688);
+console.log(test[0]["name"]);
