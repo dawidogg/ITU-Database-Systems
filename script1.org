@@ -406,3 +406,18 @@ from user_history, airports src, airports dest
 where (src.id = origin_airport_id and
 	  dest.id = destination_airport_id);
 #+end_src
+
+* Map
+#+begin_src sql
+use traveling_cost;
+
+select id, latitude as lat, longitude as lng, name
+from airports	 
+where id = closest_airport(47, 28.9);
+	
+#+end_src
+
+#+RESULTS:
+|   id |               lat |                lng | name                           |
+|------+-------------------+--------------------+--------------------------------|
+| 1735 | 46.92770004272461 | 28.930999755859375 | Chişinău International Airport |

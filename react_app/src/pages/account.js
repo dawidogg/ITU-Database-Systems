@@ -211,6 +211,10 @@ function Account(props) {
 	else {
 		return (
 			<main>
+				<Helmet>
+					<title> {TITLE} </title>
+				</Helmet>
+
 				<div className="account_history">
 					<h1>Welcome, {props.user_data["first_name"]} {props.user_data["last_name"]}</h1>
 					<History />

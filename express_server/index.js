@@ -92,5 +92,15 @@ app.post("/post_history", async function(req, res) {
 	console.log(result);
 });
 
+app.post("/closest_airport", async function(req, res) {
+	console.log(req.body);
+	let result = await db.closestAirports(req.body.position);
+	if (result === false)
+		res.status(400).send(result);
+	else 
+		res.status(200).send(result);
+	console.log(result);
+});
+
 app.use('/static', express.static('public'))
 app.listen(8080);

@@ -344,3 +344,19 @@ export async function getCityCountry(airport_id) {
 		return false;
 	}  	
 }
+
+export async function closestAirports(position) {
+	try {
+		const [[result]] = await pool.query(
+			`select id, latitude as lat, longitude as lng, name
+			from airports	 
+			where id = closest_airport(?, ?);`,
+			[position["lat"], position["lng"]]
+		);
+		return result;
+	} catch(e) {
+		console.log(e.message);
+		return false;
+	}  	
+
+}

@@ -31,7 +31,8 @@ npm start
 - react-native
 - react-native-web
 - react-horizontal-scrolling-menu
-
+- leaflet (interactive map)
+- react-leaflet (react components for map)
 ### Sending a request to server
 ```
 fetch("http://localhost:8080/register", {

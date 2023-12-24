@@ -16,7 +16,8 @@ function App() {
 	const [account_name, setAccountName] = useState('Account');
 	const [user_data, setUserData] = useState(null);
 	const [user_credentials, setUserCredentials] = useState(null);
-	const [airports, set_airports] = useState([344, 1688]);
+	const [airport1, setAirport1] = useState(-1);
+	const [airport2, setAirport2] = useState(-1);
 	
 	useEffect(() => {
 		if (user_credentials != null) {
@@ -48,9 +49,10 @@ return (
 			<Routes>
 				<Route path='/' element={<Home/>}/>
 				<Route path='/home' element={<Home/>}/>
-				<Route path='/map' element={<Map/>}/>
+				<Route path='/map' element=
+					   {<Map onMarker1={(result) => {setAirport1(result)}} onMarker2={(result) => {setAirport2(result)}}/>}/>
 				<Route path='/calculator' element=
-					   {<Calculator origin={airports[0]} destination={airports[1]} user_credentials={user_credentials}/>}/>
+					   {<Calculator origin={airport1} destination={airport2} user_credentials={user_credentials}/>}/>
 				<Route path='/order' element={<Order/>}/>
 				<Route path='/admin' element={<Admin/>}/>
 				<Route path='/account' element=
