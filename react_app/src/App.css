@@ -107,7 +107,7 @@ form div.general label {
 	vertical-align: middle;
 
 	align-items:center;
-	background-color: #f2541d;
+	background-color: white;
 	color: black;
 	padding: 0 0.5em;
     border-color: white;
@@ -254,4 +254,44 @@ div.card_price {
   box-sizing: border-box;
   overflow-y: hidden;
   overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+table {
+    max-width:980px;
+    table-layout:fixed;
+    margin:auto;
+    width:100%;
+}
+th, td {
+    padding:5px 10px;
+    border:1px solid #000;
+}
+thead, tfoot {
+    background:#cae1ff;
+    width:100%;    
+}
+tbody {
+    height:300px;
+    overflow:auto;
+    overflow-x:hidden;    
+    width:100%;
+}
+tbody tr {    
+    width:100%;    
+}
+
+tbody{
+  scrollbar-face-color: ThreeDFace !important;
+  scrollbar-shadow-color: ThreeDDarkShadow !important;
+  scrollbar-highlight-color: ThreeDHighlight !important;
+  scrollbar-track-color: Scrollbar !important;
+  scrollbar-arrow-color: ButtonText !important;
+}
+
+div.account_history {
+	text-align: center;
+}
+
+div.calculator {
+	text-align: center;
 }

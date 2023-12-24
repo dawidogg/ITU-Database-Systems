@@ -80,8 +80,14 @@ export async function getUserHistory(login_data) {
 	try {
 		const authentificated = await login(login_data);
 		if (authentificated) {
-			const [[result]] = await pool.query(
-				`select * from user_history where email=?;`,	   
+			const [result] = await pool.query(
+				`select CONCAT(src.city, ", ", src.country) as origin,
+					   CONCAT(dest.city, ", ", dest.country) as destination,
+					   days, cost, date_format(time_stamp, '%Y-%m-%d %H:%i:%s') as "time_stamp"
+				from user_history, airports src, airports dest
+				where src.id = origin_airport_id and
+					  dest.id = destination_airport_id and
+					  email = ?;`,
 				login_data[0]
 			);
 			return result;
@@ -325,3 +331,16 @@ export async function getPlaneOffers(source_id, destination_id) {
 	return result;
 }
 
+export async function getCityCountry(airport_id) {
+	try {
+		const [result] = await pool.query(
+			`select city, country from airports
+			where id = ?`,
+			airport_id
+		);
+		return result;
+	} catch(e) {
+		console.log(e.message);
+		return false;
+	}  	
+}

@@ -11,9 +11,7 @@ import plane_left from "../images/plane-left.svg";
 const TITLE = 'Calculator';
 
 export default function Calculator(props) {
-	const cities = ["Istanbul", "Bucharest", "Chisinau", "Moscow", "Paris"];
 	let airlines = [];
-	const defaultOption = cities[0];
 
 	const [dropdown_value, drop_down_change] = useState(0);
 	const [plane_offers, set_plane_offers] = useState([]);
@@ -55,25 +53,28 @@ export default function Calculator(props) {
 		});
 	}
 
+	const [where, setWhere] = useState("Loading...");
+
+	const getWhere = async () => {
+		const response1 = await fetch('http://localhost:8080/city_country/'+props.origin)
+		const response2 = await fetch('http://localhost:8080/city_country/'+props.destination);
+		const text1 = await response1.json();
+		const text2 = await response2.json();
+		setWhere(text1[0]["city"] + ", " + text1[0]["country"]  + " - " +  text2[0]["city"] + ", " + text2[0]["country"]);
+	}
+	
+	useEffect(() => {
+		getWhere();
+	}, []);
+
 	return (
 		<main>
 			<Helmet>
 				<title> {TITLE} </title>
 			</Helmet>
-			<div>
-				<div className="dropdown">
-					<label htmlFor="cars">Estimate for stay in </label>
-
-					<select name="cars" id="cars" onChange={drop_down_change}>
-						{cities.map((name, index) => {
-							return (
-								<option value={index} key={index}>{name}</option>
-							);
-						})}
-					</select>
-				</div>
-
-
+			<div className="calculator">
+				<h1>Calculator</h1>
+				<h2>{where}</h2>
 				<label htmlFor="days">Number of days: </label>
 				<input type="number" id="days" name="days" onChange={e =>
 						   set_day_count((parseInt(e.target.value) >= 0)? e.target.value : 0)

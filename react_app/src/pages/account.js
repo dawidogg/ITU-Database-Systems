@@ -87,6 +87,57 @@ function Account(props) {
 		setCheckedState(updatedCheckedState);
 	};
 
+	const [history, setHistory] = useState([]);
+	const getHistory = () => {
+		fetch("http://localhost:8080/user_history", {
+			method: 'POST',
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(props.user_credentials),
+		}).then(response => {
+			return response.json();
+		}).then(responseData => {
+			console.log(responseData);
+			setHistory(responseData);
+		});
+	};
+
+	useEffect(() => {
+		getHistory();
+	}, []);
+
+	function History() {
+		return (
+			<div>
+				<h2> History</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Origin</th>
+							<th>Destination</th>
+							<th>Days</th>
+							<th>Cost</th>
+							<th>Time stamp</th>
+						</tr>
+					</thead>
+				
+					<tbody>
+						{history.map(h => {
+							return (
+								<tr>
+									<td>{h["origin"]} </td>
+									<td>{h["destination"]} </td>
+									<td>{h["days"]} </td>
+									<td>{h["cost"]} </td>
+									<td>{h["time_stamp"]} </td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			</div>
+		);
+	}
+
 	if (props.user_data == null)
 		return (
 			<main className="account">
@@ -157,19 +208,20 @@ function Account(props) {
 				</div>
 			</main>
 		);
-	else
+	else {
 		return (
 			<main>
-				<div>
-				<h1>Welcome, {props.user_data["first_name"]} {props.user_data["last_name"]}</h1>
-				<h2> History</h2>
+				<div className="account_history">
+					<h1>Welcome, {props.user_data["first_name"]} {props.user_data["last_name"]}</h1>
+					<History />
+					
 					<div className="logged_in_buttons">
 						<button onClick={logout}>Logout</button>
 						<button onClick={deleteAccount}>Delete account</button>
 					</div>
 				</div>
 			</main>);
-
+	}
 }
 export default Account;
 

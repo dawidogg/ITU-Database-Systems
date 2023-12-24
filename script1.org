@@ -292,14 +292,6 @@ call generate_airline_costs();
 #+RESULTS:
 |---|
 
-* Views
-View user data without exposing the password
-#+begin_src sql
-create view user_data_view as
-select email, first_name, last_name, age, interests
-from users;	   
-#+end_src
-
 * Distance between airports 
 #+begin_src sql
 use traveling_cost;
@@ -404,12 +396,13 @@ routes.src_airport_id=344 and
 routes.dest_airport_id=1688;
 #+end_src
 
-#+RESULTS:
-| name              | icao | category |
-|-------------------+------+----------|
-| Germanwings       | GWI  |        2 |
-| Air Berlin        | BER  |        3 |
-| Condor Flugdienst | CFG  |        5 |
-| TUIfly            | HLX  |        4 |
-| SunExpress        | SXS  |        4 |
-
+* Get user history
+#+begin_src sql
+use traveling_cost;
+select CONCAT(src.city, ", ", src.country) as origin,
+	   CONCAT(dest.city, ", ", dest.country) as destination,
+	   days, cost, date_format(time_stamp, '%Y-%m-%d %H:%i:%s') as "time_stamp"
+from user_history, airports src, airports dest
+where (src.id = origin_airport_id and
+	  dest.id = destination_airport_id);
+#+end_src
