@@ -51,44 +51,83 @@ mysql> SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 The project is organized in the following structure:
 #+begin_quote
 .
+
 ├── express_server						Backend API server
+
 │   ├── database.js						Backend MySQL functions
+
 │   ├── index.js						HTTP request handling
+
 │   ├── package.json					Node.js dependency list
+
 │   └── package-lock.json
+
 ├── original_csv						Data imported to database
+
 │   ├── airlines.csv
+
 │   ├── airports.csv
+
 │   ├── cost_of_living_indices.csv
+
 │   ├── countries.csv
+
 │   ├── planes.csv
+
 │   └── routes.csv					
+
 ├── react_app							Frontend server
+
 │   ├── package.json					Node.js dependency list
+
 │   ├── package-lock.json
+
 │   ├── public							
+
 │   │   ├── airline_logos				Database of airline logos
+
 │   │   ├── favicon.ico					Application icon
+
 │   │   ├── index.html
+
 │   │   └── manifest.json
+
 │   └── src								React source folder
+
 │       ├── App.css						Frontend CSS
+
 │       ├── App.js						React root component
+
 │       ├── components					
+
 │       │   ├── footer.js				
+
 │       │   └── header.js				Header component with navigation buttons
+
 │       ├── images						Small images, part of pages' design
+
 │       ├── index.js					
+
 │       ├── pages						React child components
+
 │       │   ├── account.js
+
 │       │   ├── admin.js
+
 │       │   ├── calculator.js
+
 │       │   ├── home.js
+
 │       │   ├── map.js
+
 │       │   └── order.js
+
 │       ├── reportWebVitals.js
+
 │       └── setupTests.js
+
 ├── SCHEMA.sql							Script to create MySQL database and tables
+
 └── IMPORT.sql							Script to import all from CSV and create functions
 #+end_quote
 
@@ -229,10 +268,15 @@ delimiter ;
 
 *** Calculate indirect routes and show all details
 	The following script is quite long and it generates results with a noticeable delay. However, its output represents a very rich information, specifically the list of direct and indirect routes. It outputs airport IDs that are part of the route, city and country names where airports are located and the route's total distance.
+
 	First, the script generates an /intermediate/ table inside the *WITH* clause. Regardless of the number of stops, all routes are in the same table of 5 columns: *a0*, *a1*, *a2*, *a3* and *distance*, where *ax* is airport *x*'s identifier. For direct flights, only two airport IDs will be shown, and the places for other airports will get an invalid value, -1. This is done using *CASE* expressions. The number of airports is always at least two, so there is nothing to be checked for *a0* and *a1*. For *a2*, the ID is irrelevant when the route ends on airport 1. The case expression for *a2* can be read like this: in case when the destination airport has been found at level 0 (direct flight), then *a2* is irrelevant and takes -1; otherwise, the airport found at level 1 (indirect flight with 1 exchange) is relevant. For *a3* to be included, airports found at level 0 and level 1 must not be equal to final destination. *a3* is the result of level 2 evaluation (indirect flight with 2 exhanges).
+
 	The last column is distance, which is calculated again according to the relevancy of airport IDs. The *CASE* expression switches between different formulas. When all airport IDs are relevant, distances between all adjacent points are include, and when the flight is direct, the total distance is the distance between two airports. Distance is important in sorting rows, because shortest paths are usually cheaper and more relevant.
+
 	Different levels are obtained by joining the *routes* table onto itself two times. *lvl0* instance is left-joined with *routes* to create *lvl1*, which is again left-joined with another *routes* instance, resulting in *lvl2*. Out of this big table, the only rows relevant are those which lead to *@destination*, on any level.
+
 	Since irrelevant airports are hidden with -1, there can be multiple same rows. To handle this issue, *SELECT DISTINCT* is used. The rows are ordered by distance and are limited, because there can be too many results.
+
 	In second part, the intermediate table is expanded with city and country names of each stop. This final version is what the web application will show to the user: routes consisting of readable sequences of cities and countries.
 
   #+begin_src sql
@@ -396,20 +440,21 @@ app.get("/plane_offers/:source/:destination", async function(req, res) {
 	#+end_src
 
 	Here is a complete list of all backend API:
-	- app.post("/register", async function(req, res) {
-	- app.post("/login", async function(req, res) {
-	- app.delete("/delete_user", async function(req, res) {
-	- app.post("/user_data", async function(req, res) {
-	- app.post("/user_history", async function(req, res) {
-	- app.get("/plane_offers/:source/:destination", async function(req, res) {
-	- app.get("/city_country/:airport", async function(req, res) {
-	- app.post("/post_history", async function(req, res) {
-	- app.post("/closest_airport", async function(req, res) {
+	| Method | URL                                                     | Description                           |
+	|--------+---------------------------------------------------------+---------------------------------------|
+	| POST   | http://localhost:8080/register                          | Register new account                  |
+	| POST   | http://localhost:8080/login                             | Login into existing account           |
+	| DELETE | http://localhost:8080/delete_user                       | Delete account                        |
+	| POST   | http://localhost:8080/user_data                         | Get all user data except password     |
+	| POST   | http://localhost:8080/user_history                      | Get all user history                  |
+	| GET    | http://localhost:8080/plane_offers/:source/:destination | Get plane offers between two airports |
+	| GET    | http://localhost:8080/city_country/:airport             | Get airport's city and country names  |
+	| POST   | http://localhost:8080/post_history                      | Save a history entry                  |
+	| POST   | http://localhost:8080/closest_airport                   | Get closest airport to a point on map |
 
 * Frontend
-  
 ** Parent component
-
+   reactApp.js
 ** Navigation bar
    
 ** Account
