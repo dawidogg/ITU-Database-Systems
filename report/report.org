@@ -29,22 +29,166 @@ mysql> SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
    - *express*: Node.js server framework for building web applications and APIs.
    - *nodemon*: Development tool for hot-reloading Node.js applications during code changes.
    - *mysql2*: Module for interacting with MySQL databases.
-   - *dotenv*: Loads environment variables from a .env file, instead of hardcoding credentials .
-   - *shelljs*: Executes external programs and shell commands in Node.js.
-   - *cors*: Provides Cross-Origin Resource Sharing support for Node.js applications.
-   - *bcrypt*: Encrypts passwords securely in Node.js applications.
+   - *dotenv*: Loads environment variables from a .env file, instead of hard coding credentials.
+   - *shelljs*: Executes external programs and shell commands.
+   - *cors*: Provides Cross-Origin Resource Sharing support.
+   - *bcrypt*: Encrypts passwords securely.
+   After this installation, the server can be started on *localhost:8080* with the command *npm start*.
 
 ** Client
+   The client code is located in *react_app* directory, and as its name suggests, it is build using React.js front-end library. In the same way as with the server, *npm install* will download all necessary packages:
+   - *react-router-dom*: A package used for page navigation in React applications.
+   - *react-helmet*: A package that allows for dynamically changing the title of a webpage.
+   - *react-native*: Primarily used for developing mobile applications using the React Native framework.
+   - *react-native-web*: Enables the use of React Native components in web applications.
+   - *react-horizontal-scrolling-menu*: Provides a horizontally scrolling menu component.
+   - *leaflet*: Used for creating interactive maps in web applications.
+   - *react-leaflet*: Offers React components specifically designed for working with maps in web applications.
+   *npm start* command opens the application inside the default browser running at *localhost:3000*.
    
-
 * Project folder structure
+# tree -L 4 -I "node_modules|?*png|?*svg|report|?*org|?*txt|sync.sh|?*md" . 
+The project is organized in the following structure:
+#+begin_quote
+.
+├── express_server						Backend API server
+│   ├── database.js						Backend MySQL functions
+│   ├── index.js						HTTP request handling
+│   ├── package.json					Node.js dependency list
+│   └── package-lock.json
+├── original_csv						Data imported to database
+│   ├── airlines.csv
+│   ├── airports.csv
+│   ├── cost_of_living_indices.csv
+│   ├── countries.csv
+│   ├── planes.csv
+│   └── routes.csv					
+├── react_app							Frontend server
+│   ├── package.json					Node.js dependency list
+│   ├── package-lock.json
+│   ├── public							
+│   │   ├── airline_logos				Database of airline logos
+│   │   ├── favicon.ico					Application icon
+│   │   ├── index.html
+│   │   └── manifest.json
+│   └── src								React source folder
+│       ├── App.css						Frontend CSS
+│       ├── App.js						React root component
+│       ├── components					
+│       │   ├── footer.js				
+│       │   └── header.js				Header component with navigation buttons
+│       ├── images						Small images, part of pages' design
+│       ├── index.js					
+│       ├── pages						React child components
+│       │   ├── account.js
+│       │   ├── admin.js
+│       │   ├── calculator.js
+│       │   ├── home.js
+│       │   ├── map.js
+│       │   └── order.js
+│       ├── reportWebVitals.js
+│       └── setupTests.js
+├── SCHEMA.sql							Script to create MySQL database and tables
+└── IMPORT.sql							Script to import all from CSV and create functions
+#+end_quote
 
 * Database
-** Database source
+** Database sources
+   Most of the tables in database come from OpenFlights.org. It contains *airlines.csv*, *airports.csv*, *countries.csv*, *routes.csv* and *planes.csv* files. The second source, which was supposed to be used for staying cost estiamation, was Numbeo's /Current Cost of Living Index/. It compares cities across the world by several parameters, such as rent, groceries, restaurant and local purchasing power indeces. Lastly, the *airlines.csv* from the first database is augumented with /Airline Logos/ database, which has over 900 airline logos in PNG format. These datasets can be accessed from the links below:
+   - https://openflights.org/data.html									 
+   - https://www.numbeo.com/cost-of-living/rankings_current.jsp			 
+   - https://github.com/sexym0nk3y/airline-logos						 
+** Importing from CSV
+   By first running *SCHEMA.sql* and then *IMPORT.sql*, assuming that the CSV files were copied to the path accessible to MySQL, all required tables can be imported. *IMPORT.sql* also has a function for randomly generating a table called *airline_costs*.
+
+** Table row descriptions
+*** airports
+	 | Airport ID            | Unique OpenFlights identifier for this airport.                                     |
+	 | Name                  | Name of airport. May or may not contain the City name.                              |
+	 | City                  | Main city served by airport. May be spelled differently from Name.                  |
+	 | Country               | Country or territory where airport is located. See Countries to cross-reference to ISO 3166-1 codes. |
+	 | IATA                  | 3-letter IATA code. Null if not assigned/unknown.                                   |
+	 | ICAO                  | 4-letter ICAO code. Null if not assigned.                                           |
+	 | Latitude              | Decimal degrees, usually to six significant digits. Negative is South, positive is North. |
+	 | Longitude             | Decimal degrees, usually to six significant digits. Negative is West, positive is East. |
+	 | Altitude              | In feet.                                                                            |
+	 | Timezone              | Hours offset from UTC. Fractional hours are expressed as decimals, eg. India is 5.5. |
+	 | DST                   | Daylight savings time. One of E (Europe), A (US/Canada), S (South America), O (Australia), Z (New Zealand), N (None) or U (Unknown). See also: Help: Time |
+	 | Tz database time zone | Timezone in "tz" (Olson) format, eg. "America/Los_Angeles".                         |
+	 | Type                  | Type of the airport. Value "airport" for air terminals, "station" for train stations, "port" for ferry terminals and "unknown" if not known. In airports.csv, only type=airport is included. |
+	 | Source                | Source of this data. "OurAirports" for data sourced from OurAirports, "Legacy" for old data not matched to OurAirports (mostly DAFIF), "User" for unverified user contributions. In airports.csv, only source=OurAirports is included. |
+
+*** airlines
+	 | Airline ID | Unique OpenFlights identifier for this airline.                                      |
+	 | Name       | Name of the airline.                                                                 |
+	 | Alias      | Alias of the airline. For example, All Nippon Airways is commonly known as "ANA".    |
+	 | IATA       | 2-letter IATA code, if available.                                                    |
+	 | ICAO       | 3-letter ICAO code, if available.                                                    |
+	 | Callsign   | Airline callsign.                                                                    |
+	 | Country    | Country or territory where airport is located. See Countries to cross-reference to ISO 3166-1 codes. |
+	 | Active     | "Y" if the airline is or has until recently been operational, "N" if it is defunct. This field is not reliable: in particular, major airlines that stopped flying long ago, but have not had their IATA code reassigned (eg. Ansett/AN), will incorrectly show as "Y". |
+
+*** routes
+	| Airline                | 2-letter (IATA) or 3-letter (ICAO) code of the airline.                             |
+	| Airline ID             | Unique OpenFlights identifier for airline (see Airline).                            |
+	| Source airport         | 3-letter (IATA) or 4-letter (ICAO) code of the source airport.                      |
+	| Source airport ID      | Unique OpenFlights identifier for source airport (see Airport)                      |
+	| Destination airport    | 3-letter (IATA) or 4-letter (ICAO) code of the destination airport.                 |
+	| Destination airport ID | Unique OpenFlights identifier for destination airport (see Airport)                 |
+	| Codeshare              | "Y" if this flight is a codeshare (that is, not operated by Airline, but another carrier), empty otherwise. |
+	| Stops                  | Number of stops on this flight ("0" for direct)                                     |
+	| Equipment              | 3-letter codes for plane type(s) generally used on this flight, separated by spaces |
+
+*** countries
+	| name       | Full name of the country or territory.                                              |
+	| iso_code   | Unique two-letter ISO 3166-1 code for the country or territory.                     |
+	| dafif_code | FIPS country codes as used in DAFIF. Obsolete and primarily of historical interested. |
+
+*** planes
+	| Name      | Full name of the aircraft.                            |
+	| IATA code | Unique three-letter IATA identifier for the aircraft. |
+	| ICAO code | Unique four-letter ICAO identifier for the aircraft.  |
+
+*** living_cost
+	| city             | City                                   |
+	| country          | Country                                |
+	| slug             | Short name                             |
+	| currency         | Currency code in three characters      |
+	| avg_index        | Overall living index (0%-100%)         |
+	| rent_index       | Rent Index (0%-100%)                   |
+	| groceries_index  | Groceries Index (0%-100%)              |
+	| restaurant_index | Restaurant Price Index (0%-100%)       |
+	| purchasing_index | Local Purchasing Power Index (0%-100%) |
+	| id               | Unique identifier for each city        |
+
+*** users
+	| email         | User's email, primary key                                                |
+	| password_hash | User's encrypted password                                                |
+	| first_name    | User's first name                                                        |
+	| last_name     | User's last name                                                         |
+	| age           | User's age                                                               |
+	| interests     | Each bit of this integer indicates the presence of a particular interest |
+
+*** user_history
+	| id                     | Unique id for each history entry                    |
+	| email                  | Email referring to a registered user                |
+	| origin_airport_id      | Origin airport id, referring to airports table      |
+	| destination_airport_id | Destination airport id, referring to airports table |
+	| days                   | Number of days of stay                              |
+	| cost                   | Estimated cost of traveling                         |
+	| time_stamp             | Date and time of saving the history entry           |
+
+*** airline_costs
+	| id       | Unique identifier referring to airlines table               |
+	| category | Number from 1 to 5, where less means more expensive airline |
+
 ** Entity Relationship Diagram
+  In total, there are 9 tables, interconnected in such a way:
+   [[./erdiagram.png]]
 
 * Backend API
 ** SQL scripts
+
 ** Wrapper functions
 ** HTTP requests
 

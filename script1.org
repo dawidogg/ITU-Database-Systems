@@ -217,7 +217,6 @@ purchasing_index);
    | last_name     |
    | age           |
    | interests     |
-   | history       |
 
 #+begin_src sql
 use traveling_cost;
@@ -231,6 +230,15 @@ interests varchar(255),
 primary key (email)
 );
 #+end_src
+
+** user_history
+   | id                     | Unique id for each history entry                    |
+   | email                  | Email referring to a registered user                |
+   | origin_airport_id      | Origin airport id, referring to airports table      |
+   | destination_airport_id | Destination airport id, referring to airports table |
+   | days                   | Number of days of stay                              |
+   | cost                   | Estimated cost of traveling                         |
+   | time_stamp             | Date and time of saving the history entry           |
 
 #+begin_src sql
 use traveling_cost;

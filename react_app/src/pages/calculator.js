@@ -48,14 +48,17 @@ export default function Calculator(props) {
 		});
 	}
 
-	const [where, setWhere] = useState("Loading...");
+	const [where, setWhere] = useState("Select on map");
 
 	const getWhere = async () => {
-		const response1 = await fetch('http://localhost:8080/city_country/'+props.origin)
-		const response2 = await fetch('http://localhost:8080/city_country/'+props.destination);
-		const text1 = await response1.json();
-		const text2 = await response2.json();
-		setWhere(text1[0]["city"] + ", " + text1[0]["country"]  + " - " +  text2[0]["city"] + ", " + text2[0]["country"]);
+		if (props.origin != -1 && props.destination != -1) {
+			setWhere("Loading...");
+			const response1 = await fetch('http://localhost:8080/city_country/'+props.origin)
+			const response2 = await fetch('http://localhost:8080/city_country/'+props.destination);
+			const text1 = await response1.json();
+			const text2 = await response2.json();
+			setWhere(text1[0]["city"] + ", " + text1[0]["country"]  + " - " +  text2[0]["city"] + ", " + text2[0]["country"]);
+		}
 	}
 	
 	useEffect(() => {
@@ -101,7 +104,7 @@ export default function Calculator(props) {
 
 	function Card({itemId, count, airline_name, airline_code, route, price}) {
 		const visibility = React.useContext(VisibilityContext);
-		const stops = route.subarray(1, -1);
+		const stops = route.subarray(1, -2);
 		let card_class = "card_" + count + ((itemId === clicked_card) ? " clicked_card" : " card");
 		return (
 			<div className={card_class} onClick={() => {
@@ -109,7 +112,7 @@ export default function Calculator(props) {
 					 set_plane_cost(price);
 				 }}>
 				<div>Airline{(count == 1) ? '' : 's'}: {" "+airline_name} </div>
-				<div>{(count == 1) ? 'Direct flight' : ('Stops at '+ stops)} </div>
+				<div>{(count == 1) ? 'Direct flight' : ('Exchange at '+ stops)} </div>
 				<div className="airline_thumbnail">
 					{airline_code.map((obj, index) => {
 						return (<img src={"./airline_logos/"+obj+".png"} />)

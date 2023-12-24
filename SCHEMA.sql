@@ -1,3 +1,4 @@
+drop database traveling_cost;
 create database traveling_cost;
 
 use traveling_cost;
@@ -19,9 +20,7 @@ callsign varchar(255),
 country varchar(255),  
 active varchar(10),
 primary key (id),
-foreign key (country) references countries(name),
-unique (iata),
-unique (icao)
+foreign key (country) references countries(name)
 );
 
 create table airports (
@@ -40,9 +39,7 @@ tz varchar(255),
 type varchar(255),                 
 source varchar(255),
 primary key (id),
-foreign key (country) references countries(name),
-foreign key (iata) references airlines(iata),
-foreign key (icao) references airlines(icao)
+foreign key (country) references countries(name)
 );
 
 create table routes (
@@ -67,9 +64,7 @@ create table planes (
 name varchar(255),
 iata varchar(10),
 icao varchar(10),
-primary key (name),
-foreign key (iata) references airlines(iata),
-foreign key (icao) references airlines(icao)
+primary key (name)
 );
 
 create table living_cost (
