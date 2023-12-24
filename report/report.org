@@ -102,42 +102,43 @@ The project is organized in the following structure:
    By first running *SCHEMA.sql* and then *IMPORT.sql*, assuming that the CSV files were copied to the path accessible to MySQL, all required tables can be imported. *IMPORT.sql* also has a function for randomly generating a table called *airline_costs*.
 
 ** Table row descriptions
+   According to the table row descriptions provided in this section, *SCHEMA.sql* was written.
 *** airports
-	 | Airport ID            | Unique OpenFlights identifier for this airport.                                     |
-	 | Name                  | Name of airport. May or may not contain the City name.                              |
-	 | City                  | Main city served by airport. May be spelled differently from Name.                  |
-	 | Country               | Country or territory where airport is located. See Countries to cross-reference to ISO 3166-1 codes. |
-	 | IATA                  | 3-letter IATA code. Null if not assigned/unknown.                                   |
-	 | ICAO                  | 4-letter ICAO code. Null if not assigned.                                           |
-	 | Latitude              | Decimal degrees, usually to six significant digits. Negative is South, positive is North. |
-	 | Longitude             | Decimal degrees, usually to six significant digits. Negative is West, positive is East. |
-	 | Altitude              | In feet.                                                                            |
-	 | Timezone              | Hours offset from UTC. Fractional hours are expressed as decimals, eg. India is 5.5. |
-	 | DST                   | Daylight savings time. One of E (Europe), A (US/Canada), S (South America), O (Australia), Z (New Zealand), N (None) or U (Unknown). See also: Help: Time |
-	 | Tz database time zone | Timezone in "tz" (Olson) format, eg. "America/Los_Angeles".                         |
-	 | Type                  | Type of the airport. Value "airport" for air terminals, "station" for train stations, "port" for ferry terminals and "unknown" if not known. In airports.csv, only type=airport is included. |
-	 | Source                | Source of this data. "OurAirports" for data sourced from OurAirports, "Legacy" for old data not matched to OurAirports (mostly DAFIF), "User" for unverified user contributions. In airports.csv, only source=OurAirports is included. |
+	 | id        | Unique OpenFlights identifier for this airport.                            |
+	 | name      | Name of airport. May or may not contain the City name.                     |
+	 | city      | Main city served by airport. May be spelled differently from Name.         |
+	 | country   | Country or territory where airport is located. See Countries to cross-reference to ISO 3166-1 codes. |
+	 | iata      | 3-letter IATA code. Null if not assigned/unknown.                          |
+	 | icao      | 4-letter ICAO code. Null if not assigned.                                  |
+	 | latitude  | Decimal degrees, usually to six significant digits. Negative is South, positive is North. |
+	 | longitude | Decimal degrees, usually to six significant digits. Negative is West, positive is East. |
+	 | altitude  | In feet.                                                                   |
+	 | timezone  | Hours offset from UTC. Fractional hours are expressed as decimals, eg. India is 5.5. |
+	 | dst       | Daylight savings time. One of E (Europe), A (US/Canada), S (South America), O (Australia), Z (New Zealand), N (None) or U (Unknown). See also: Help: Time |
+	 | tz        | Timezone in "tz" (Olson) format, eg. "America/Los_Angeles".                |
+	 | type      | Type of the airport. Value "airport" for air terminals, "station" for train stations, "port" for ferry terminals and "unknown" if not known. In airports.csv, only type=airport is included. |
+	 | source    | Source of this data. "OurAirports" for data sourced from OurAirports, "Legacy" for old data not matched to OurAirports (mostly DAFIF), "User" for unverified user contributions. In airports.csv, only source=OurAirports is included. |
 
 *** airlines
-	 | Airline ID | Unique OpenFlights identifier for this airline.                                      |
-	 | Name       | Name of the airline.                                                                 |
-	 | Alias      | Alias of the airline. For example, All Nippon Airways is commonly known as "ANA".    |
-	 | IATA       | 2-letter IATA code, if available.                                                    |
-	 | ICAO       | 3-letter ICAO code, if available.                                                    |
-	 | Callsign   | Airline callsign.                                                                    |
-	 | Country    | Country or territory where airport is located. See Countries to cross-reference to ISO 3166-1 codes. |
-	 | Active     | "Y" if the airline is or has until recently been operational, "N" if it is defunct. This field is not reliable: in particular, major airlines that stopped flying long ago, but have not had their IATA code reassigned (eg. Ansett/AN), will incorrectly show as "Y". |
+	 | id       | Unique OpenFlights identifier for this airline.                            |
+	 | name     | Name of the airline.                                                       |
+	 | alias    | Alias of the airline. For example, All Nippon Airways is commonly known as "ANA". |
+	 | iata     | 2-letter IATA code, if available.                                          |
+	 | icao     | 3-letter ICAO code, if available.                                          |
+	 | callsign | Airline callsign.                                                          |
+	 | country  | Country or territory where airport is located. See Countries to cross-reference to ISO 3166-1 codes. |
+	 | active   | "Y" if the airline is or has until recently been operational, "N" if it is defunct. This field is not reliable: in particular, major airlines that stopped flying long ago, but have not had their IATA code reassigned (eg. Ansett/AN), will incorrectly show as "Y". |
 
 *** routes
-	| Airline                | 2-letter (IATA) or 3-letter (ICAO) code of the airline.                             |
-	| Airline ID             | Unique OpenFlights identifier for airline (see Airline).                            |
-	| Source airport         | 3-letter (IATA) or 4-letter (ICAO) code of the source airport.                      |
-	| Source airport ID      | Unique OpenFlights identifier for source airport (see Airport)                      |
-	| Destination airport    | 3-letter (IATA) or 4-letter (ICAO) code of the destination airport.                 |
-	| Destination airport ID | Unique OpenFlights identifier for destination airport (see Airport)                 |
-	| Codeshare              | "Y" if this flight is a codeshare (that is, not operated by Airline, but another carrier), empty otherwise. |
-	| Stops                  | Number of stops on this flight ("0" for direct)                                     |
-	| Equipment              | 3-letter codes for plane type(s) generally used on this flight, separated by spaces |
+	| airline_name    | 2-letter (IATA) or 3-letter (ICAO) code of the airline.                    |
+	| airline_id      | Unique OpenFlights identifier for airline (see Airline).                   |
+	| src_airport     | 3-letter (IATA) or 4-letter (ICAO) code of the source airport.             |
+	| src_airport_id  | Unique OpenFlights identifier for source airport (see Airport)             |
+	| dest_airport    | 3-letter (IATA) or 4-letter (ICAO) code of the destination airport.        |
+	| dest_airport_id | Unique OpenFlights identifier for destination airport (see Airport)        |
+	| codeshare       | "Y" if this flight is a codeshare (that is, not operated by Airline, but another carrier), empty otherwise. |
+	| stops           | Number of stops on this flight ("0" for direct)                            |
+	| equipment       | 3-letter codes for plane type(s) generally used on this flight, separated by spaces |
 
 *** countries
 	| name       | Full name of the country or territory.                                              |
@@ -145,9 +146,9 @@ The project is organized in the following structure:
 	| dafif_code | FIPS country codes as used in DAFIF. Obsolete and primarily of historical interested. |
 
 *** planes
-	| Name      | Full name of the aircraft.                            |
-	| IATA code | Unique three-letter IATA identifier for the aircraft. |
-	| ICAO code | Unique four-letter ICAO identifier for the aircraft.  |
+	| name | Full name of the aircraft.                            |
+	| iata | Unique three-letter IATA identifier for the aircraft. |
+	| icao | Unique four-letter ICAO identifier for the aircraft.  |
 
 *** living_cost
 	| city             | City                                   |
@@ -188,9 +189,222 @@ The project is organized in the following structure:
 
 * Backend API
 ** SQL scripts
+*** Closest airport to point
+  #+begin_src sql
+delimiter $$
+
+create function closest_airport(p_lat double, p_long double) returns int
+deterministic
+begin
+return (select id
+		from airports
+		order by ST_Distance_Sphere(
+		point(longitude, latitude), 
+		point(p_long, p_lat)
+		) limit 1);
+end$$
+delimiter ;  
+  #+end_src
+
+*** Map
+  #+begin_src sql
+select id, latitude as lat, longitude as lng, name
+from airports	 
+where id = closest_airport(47, 28.9);
+  #+end_src
+
+*** Distance between airports
+	The script creates a function which takes two airport identifiers (a and b) and returns the geographic distance between them. *ST_Distance_Sphere(Point, Point)* is MySQL's native function for calculating distance between geographic points. Given latitude and longitude as double-precision values, they can transformed into *Point* data type using *point(long, lat)* function. Because all that is given is airport IDs, their corresponding latitude and longitude coordinates are retrieved using the *SELECT* statement.
+  #+begin_src sql
+delimiter $$
+create function distance_between_airports(a int, b int) returns int
+begin
+return (select ST_Distance_Sphere(
+point((select longitude from airports where id = a), (select latitude from airports where id = a)),
+point((select longitude from airports where id = b), (select latitude from airports where id = b))			  
+)); 
+end$$
+delimiter ; 
+  #+end_src	
+
+*** Calculate indirect routes and show all details
+	The following script is quite long and it generates results with a noticeable delay. However, its output represents a very rich information, specifically the list of direct and indirect routes. It outputs airport IDs that are part of the route, city and country names where airports are located and the route's total distance.
+	First, the script generates an /intermediate/ table inside the *WITH* clause. Regardless of the number of stops, all routes are in the same table of 5 columns: *a0*, *a1*, *a2*, *a3* and *distance*, where *ax* is airport *x*'s identifier. For direct flights, only two airport IDs will be shown, and the places for other airports will get an invalid value, -1. This is done using *CASE* expressions. The number of airports is always at least two, so there is nothing to be checked for *a0* and *a1*. For *a2*, the ID is irrelevant when the route ends on airport 1. The case expression for *a2* can be read like this: in case when the destination airport has been found at level 0 (direct flight), then *a2* is irrelevant and takes -1; otherwise, the airport found at level 1 (indirect flight with 1 exchange) is relevant. For *a3* to be included, airports found at level 0 and level 1 must not be equal to final destination. *a3* is the result of level 2 evaluation (indirect flight with 2 exhanges).
+	The last column is distance, which is calculated again according to the relevancy of airport IDs. The *CASE* expression switches between different formulas. When all airport IDs are relevant, distances between all adjacent points are include, and when the flight is direct, the total distance is the distance between two airports. Distance is important in sorting rows, because shortest paths are usually cheaper and more relevant.
+	Different levels are obtained by joining the *routes* table onto itself two times. *lvl0* instance is left-joined with *routes* to create *lvl1*, which is again left-joined with another *routes* instance, resulting in *lvl2*. Out of this big table, the only rows relevant are those which lead to *@destination*, on any level.
+	Since irrelevant airports are hidden with -1, there can be multiple same rows. To handle this issue, *SELECT DISTINCT* is used. The rows are ordered by distance and are limited, because there can be too many results.
+	In second part, the intermediate table is expanded with city and country names of each stop. This final version is what the web application will show to the user: routes consisting of readable sequences of cities and countries.
+
+  #+begin_src sql
+select 344 into @source;
+select 1688 into @destination;
+	   
+with intermediate as
+(select distinct 
+		lvl0.src_airport_id as a0,
+	    lvl1.src_airport_id as a1,
+	    case when (
+	     lvl0.dest_airport_id = @destination
+	    ) then -1
+	    else lvl1.dest_airport_id end as a2,
+	    case when (
+	     lvl0.dest_airport_id = @destination or
+	     lvl1.dest_airport_id = @destination
+	    ) then -1
+	    else lvl2.dest_airport_id end as a3,
+	  case
+		when lvl0.dest_airport_id = @destination then (
+			select distance_between_airports(lvl0.src_airport_id, lvl0.dest_airport_id)
+		)
+		when lvl1.dest_airport_id = @destination then (
+			(select distance_between_airports(lvl0.src_airport_id, lvl0.dest_airport_id)) +
+			(select distance_between_airports(lvl1.src_airport_id, lvl1.dest_airport_id))			
+		)
+		when lvl2.dest_airport_id = @destination then (
+			(select distance_between_airports(lvl0.src_airport_id, lvl0.dest_airport_id)) +
+			(select distance_between_airports(lvl1.src_airport_id, lvl1.dest_airport_id)) +
+			(select distance_between_airports(lvl2.src_airport_id, lvl2.dest_airport_id))
+		)
+		else 2147483647
+	   end as distance
+from routes as lvl0
+left join routes as lvl1 on lvl0.dest_airport_id = lvl1.src_airport_id
+left join routes as lvl2 on lvl1.dest_airport_id = lvl2.src_airport_id
+where (lvl0.src_airport_id = @source and lvl0.dest_airport_id = @destination) or
+	  (lvl0.src_airport_id = @source and lvl1.dest_airport_id = @destination) or
+      (lvl0.src_airport_id = @source and lvl2.dest_airport_id = @destination)
+order by distance
+limit 20)
+select intermediate.distance,
+	   a0.city as 'airport0_city', a0.country as 'airport0_country',
+	   a1.city as 'airport1_city', a1.country as 'airport1_country', 
+	   a2.city as 'airport2_city', a2.country as 'airport2_country', 
+	   a3.city as 'airport3_city', a3.country as 'airport3_country',
+	   intermediate.a0 as 'airport0_id',
+	   intermediate.a1 as 'airport1_id',
+	   intermediate.a2 as 'airport2_id',
+	   intermediate.a3 as 'airport3_id'
+from airports a0, airports a1, airports a2, airports a3, intermediate
+where (a0.id = intermediate.a0 and
+	   a1.id = intermediate.a1 and
+	   a2.id = intermediate.a2 and
+	   a3.id = intermediate.a3);	
+  #+end_src
+
+*** Get airlines data from route
+	This script works on results obtained from the indirect routes script. It gets the list of airline names, ICAO codes and cost category numbers, for a pair of airports. This script is not combined with already hefty route finding script, it is instead used by the backend server. The backend program has more control and is able to select only a portion of routes, thus limiting the quickly growing airline list.
+  #+begin_src sql
+select airlines.name, airlines.icao, airline_costs.category
+from routes, airlines, airline_costs
+where airlines.id = routes.airline_id and
+	  airline_costs.id = routes.airline_id and
+	  routes.src_airport_id=344 and
+	  routes.dest_airport_id=1688;
+  #+end_src
+
+*** Get user history
+	The user should be able to access their own history data in the account page, and this script is exactly for this. It prepares the data in a readable format, with origin and destination columns being in "CITY, COUNTRY" format, containing the number of days, cost and even the time stamp formatted nicely. In this way, every piece of data the database holds is provided, respecting the users' freedom.
+  #+begin_src sql
+select CONCAT(src.city, ", ", src.country) as origin,
+	   CONCAT(dest.city, ", ", dest.country) as destination,
+	   days, cost, date_format(time_stamp, '%Y-%m-%d %H:%i:%s') as "time_stamp"
+from user_history, airports src, airports dest
+where (src.id = origin_airport_id and
+	  dest.id = destination_airport_id and
+	  email = 'example@gmail.com');
+  #+end_src
 
 ** Wrapper functions
+   On top of the SQL scripts described above, the backend API uses some trivial select and insert commands, which were omitted. However, the shorter scripts can be still mentioned in the context of wrapper functions. *express_server/database.js* is the file were all communication between the backend and MySQL server takes place. It connects to the database using environmental variables inside *express_server/.env*:
+   #+begin_src
+MYSQL_USER='root'
+MYSQL_HOST='localhost'
+MYSQL_PASSWORD='<R00tUser>'
+MYSQL_DATABASE='traveling_cost'
+   #+end_src
+   Instead of keeping only one connection, *database.js* creates a /pool/ of connections using these credentials, which allows more flexible querying. Every query function is structured similar to this example:
+   #+begin_src
+export async function getCityCountry(airport_id) {
+	try {
+		const [result] = await pool.query(
+			`select city, country from airports
+			where id = ?`,
+			airport_id
+		);
+		return result;
+	} catch(e) {
+		console.log(e.message);
+		return false;
+	}  	
+}
+   #+end_src
+   Some functions retrieve or post user's sensitive data, and additional checks must be performed to confirm the someone's identity. Before that, let's have a look at a new user creation. This function check for the password length, hashes the password and inserts everything to the database:
+   #+begin_src 
+export async function newUser(user_data) {
+	if (user_data[1].length < 5)
+		throw new Error("Password shorter than 5 characters");
+	const hashed_password = await hashPassword(user_data[1]);
+	const [result] = await pool.query(
+		`insert into users values
+	(?, ?, ?, ?, ?, ?);`,
+		[user_data[0], hashed_password, user_data[2], user_data[3],
+		 parseInt(user_data[4]), parseInt(user_data[5])]
+	);
+	return result;
+}
+   #+end_src
+   Then, there is a login function, used to verify someone's identity. The password provided is hashed and compared with the one in the database:
+   #+begin_src 
+export async function login(login_data) {
+	const [[result]] = await pool.query(
+		`select password_hash from users where email=?;`,
+		login_data[0]
+	);
+	const isMatch = await bcrypt.compare(login_data[1], result["password_hash"]);
+	return isMatch;
+}
+   #+end_src
+
+   Finally, each function that accesses, uploads or deletes user's private data goes through the authentification process, as in this example:
+   #+begin_src 
+export async function getUser(login_data) {
+	const authentificated = await login(login_data);
+	if (authentificated) {
+		const [[result]] = await pool.query(
+			`select email, first_name, last_name, age, interests
+			 from users where email=?;`,	   
+			login_data[0]
+		);
+		return result;
+	}
+}
+   #+end_src
+
+	The biggest function in the *express_server/database.js* is *getPlaneOffers(source_id, destination_id)*. It calls the indirect route calculation script, and as long as the number of saved offers is not exceeded, each route gets expanded into concrete offers by airlines. For direct flights, there is no limit, but for indirect ones there is a limit of 5 + 5 offers (for one exchange and two exchanges). The selection of indirect flights is done randomly. The return value of this function is an array of offers, where each offer consists of number of stops, airline name, airline ICAO code, list of cities through which the route passes, and the price. Price is estimated based on the airline's cost category and distance between airports.
+
 ** HTTP requests
+	To communicate with client, Express.js framework is used to handle various HTTP requests. In *express_server/index.js*, a couple of services are defined, used as API by the client. In this example, server process a GET request for plane offers, taking source and destination airport IDs as parameters. *db* is object containing all functions exported from *express_server/database.js*. If database responds without errors, client is transmitted the result together with status 200 (OK). If something goes wrong, client is informed with status 400 (Bad Request).
+	#+begin_src
+app.get("/plane_offers/:source/:destination", async function(req, res) {
+	console.log("/plane_offers" +req.params.source + " " + req.params.destination);
+	let result = await db.getPlaneOffers(req.params.source, req.params.destination);
+	if (result === false)
+		res.status(400).send(result);
+	else 
+		res.status(200).send(result);
+});
+	#+end_src
+
+	Here is a complete list of all backend API:
+	- app.post("/register", async function(req, res) {
+	- app.post("/login", async function(req, res) {
+	- app.delete("/delete_user", async function(req, res) {
+	- app.post("/user_data", async function(req, res) {
+	- app.post("/user_history", async function(req, res) {
+	- app.get("/plane_offers/:source/:destination", async function(req, res) {
+	- app.get("/city_country/:airport", async function(req, res) {
+	- app.post("/post_history", async function(req, res) {
+	- app.post("/closest_airport", async function(req, res) {
 
 * Frontend
   
