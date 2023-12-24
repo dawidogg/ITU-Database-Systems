@@ -1,0 +1,64 @@
+#+TITLE: BLG317E - Database Systems. Term Project.
+#+AUTHOR: Denıs Iurıe Davıdoglu
+
+* Team members
+- Name: Başak Mehlepçi ID: 150200008
+- Name: Denıs Iurıe Davıdoglu ID: 150200916
+- Name: Mahmut Mert Özdemir ID: 150200740
+
+* Introduction
+  As our term project for the Database Systems course, we developed an interactive traveling cost estimation application. User can choose their start location and destination city on an interactive map, indicate the number of days, and an estimated cost of their travel including plane tickets and daily expenses is presented. The technology stack of this project is quite complex, requiring a database management system, server and client sides. 
+  
+* Software used
+** Database
+   MySQL is an open-source relational database management system, having support for all devices and operating systems. It is lightweight, easy to operate, and due to its popularity there are MySQL extensions for integrated development environments, or even dedicated graphical programs. During development, we mostly used MySQL Workbench and the terminal version of MySQL client.
+   Some functions in the database, as well as integration with an HTTP server required some customization. After installing MySQL, the following commands must be run inside the command-line client:
+
+#+begin_src
+mysql> FLUSH PRIVILEGES;
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '<R00tUser>';
+mysql> SET GLOBAL log_bin_trust_function_creators = 1;
+mysql> SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+#+end_src
+
+   The Flush Privileges statement reloads the grant tables' privileges, ensuring that any changes made to user permissions are immediately applied without requiring a restart of the MySQL server. This is totally optional in our case; however, it is a good general practice. The second line contains authentication data, so that the backend server can connect to the databse. The user name is set to "root", trusted address is "localhost" or "127.0.0.1", and password is "<R00tUser>". Connecting with these credentials gives full control over the database. The last two lines became necessary because some database queries and functions, important to our application, would not have worked otherwise. 
+
+** Server
+   Initially, we thought of using Flask, which is a micro web framework written in Python. However, it had no apparent advantages over other frameworks when it comes to work with databases. Since the client side works with JavaScript, we decided to stick to this language and used it in the backend as well. Running JavaScript without a browser is possible with Node.js, an open-source runtime enviroment built on top of Google Chrome's V8 engine.
+   In order to run the server, Node.js must be installed. Then, inside the *express_server* directory, *npm install* must be run from terminal. This command will install all of necessary dependencies:
+   - *express*: Node.js server framework for building web applications and APIs.
+   - *nodemon*: Development tool for hot-reloading Node.js applications during code changes.
+   - *mysql2*: Module for interacting with MySQL databases.
+   - *dotenv*: Loads environment variables from a .env file, instead of hardcoding credentials .
+   - *shelljs*: Executes external programs and shell commands in Node.js.
+   - *cors*: Provides Cross-Origin Resource Sharing support for Node.js applications.
+   - *bcrypt*: Encrypts passwords securely in Node.js applications.
+
+** Client
+   
+
+* Project folder structure
+
+* Database
+** Database source
+** Entity Relationship Diagram
+
+* Backend API
+** SQL scripts
+** Wrapper functions
+** HTTP requests
+
+* Frontend
+  
+** Parent component
+
+** Navigation bar
+   
+** Account
+
+** Map
+
+** Calculator
+
+** Home
+

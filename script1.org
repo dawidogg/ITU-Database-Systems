@@ -1,6 +1,6 @@
 * Scripts to import the CSV files into the database
 ** Create the database
-#+begin_src sql :results silent
+#+begin_src sql 
 create database traveling_cost;
 #+end_src
 
@@ -62,7 +62,7 @@ lines terminated by '\n';
 	| Active     | "Y" if the airline is or has until recently been operational, "N" if it is defunct. This field is not reliable: in particular, major airlines that stopped flying long ago, but have not had their IATA code reassigned (eg. Ansett/AN), will incorrectly show as "Y". |
 
 *** Script
-#+begin_src sql :results silent
+#+begin_src sql 
 use traveling_cost;
 create table airlines (
     id int not null auto_increment,
@@ -73,7 +73,7 @@ create table airlines (
     callsign varchar(255),
     country varchar(255),  
     active varchar(10),
-    primary key (id)   
+    primary key (id)
 );
 
 load data infile 'csv/airlines.csv'
@@ -97,7 +97,7 @@ lines terminated by '\n';
 
 *** Script
 
-#+begin_src sql :results silent
+#+begin_src sql 
 use traveling_cost;
 create table routes (
     airline_name varchar(10) not null,    	  
@@ -133,7 +133,7 @@ lines terminated by '\n';
    | dafif_code | FIPS country codes as used in DAFIF. Obsolete and primarily of historical interested. |
 
 *** Script
-#+begin_src sql :results silent
+#+begin_src sql 
 use traveling_cost;
 create table countries (
     name varchar(255),
@@ -158,7 +158,7 @@ lines terminated by '\n';
 
 *** Script
 
-#+begin_src sql :results silent
+#+begin_src sql 
 use traveling_cost;
 create table planes (
     name varchar(255),
@@ -175,10 +175,7 @@ lines terminated by '\n';
 #+end_src
    
 ** cost_of_living_indices.csv
-   :PROPERTIES:
-   :ORDERED:  t
-   :END:
-#+begin_src sql :results silent
+#+begin_src sql 
 use traveling_cost;
 create table living_cost (
     city varchar(255) not null, 
@@ -195,7 +192,7 @@ create table living_cost (
  );	
 #+end_src
 
-#+begin_src sql :results silent
+#+begin_src sql 
 use traveling_cost;
 load data infile 'csv/cost_of_living_indices.csv'
 into table living_cost
@@ -235,9 +232,6 @@ primary key (email)
 );
 #+end_src
 
-#+RESULTS:
-|---|
-
 #+begin_src sql
 use traveling_cost;
 create table user_history(
@@ -254,9 +248,6 @@ foreign key	(origin_airport_id) references airports(id),
 foreign key	(destination_airport_id) references airports(id)
 )
 #+end_src
-
-#+RESULTS:
-|---|
 
 ** airline_costs
 #+begin_src sql
@@ -289,9 +280,6 @@ delimiter ;
 call generate_airline_costs();
 #+end_src
 
-#+RESULTS:
-|---|
-
 * Distance between airports 
 #+begin_src sql
 use traveling_cost;
@@ -306,25 +294,6 @@ point((select longitude from airports where id = b), (select latitude from airpo
 end$$
 delimiter ; 
 #+end_src	
-
-* Closest airport to point
-#+begin_src sql
-use traveling_cost;
-drop function closest_airport;
-delimiter $$
-
-create function closest_airport(p_lat double, p_long double) returns int
-deterministic
-begin
-return (select id
-		from airports
-		order by ST_Distance_Sphere(
-		point(longitude, latitude), 
-		point(p_long, p_lat)
-		) limit 1);
-end$$
-delimiter ;  
-#+end_src
 
 * Calculate indirect routes and show all details
 #+begin_src sql
@@ -407,17 +376,30 @@ where (src.id = origin_airport_id and
 	  dest.id = destination_airport_id);
 #+end_src
 
-* Map
-#+begin_src sql
+* Başak
+** Map
+ #+begin_src sql
 use traveling_cost;
-
 select id, latitude as lat, longitude as lng, name
 from airports	 
 where id = closest_airport(47, 28.9);
-	
-#+end_src
+ #+end_src
 
-#+RESULTS:
-|   id |               lat |                lng | name                           |
-|------+-------------------+--------------------+--------------------------------|
-| 1735 | 46.92770004272461 | 28.930999755859375 | Chişinău International Airport |
+** Closest airport to point
+ #+begin_src sql
+use traveling_cost;
+drop function closest_airport;
+delimiter $$
+
+create function closest_airport(p_lat double, p_long double) returns int
+deterministic
+begin
+return (select id
+		from airports
+		order by ST_Distance_Sphere(
+		point(longitude, latitude), 
+		point(p_long, p_lat)
+		) limit 1);
+end$$
+delimiter ;  
+ #+end_src
