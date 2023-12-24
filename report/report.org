@@ -460,7 +460,73 @@ app.get("/plane_offers/:source/:destination", async function(req, res) {
 ** Account
 
 ** Map
+ On the Map page, we have developed a frontend-centric interface. Turning our attention to the SQL side, we utilized the `closest_airport(p_lat double, p_long double)` function. This function takes latitude (`p_lat`) and longitude (`p_long`) as parameters and retrieves information from the `airports` table to find the closest airport to the specified location. The closest_airport(p_lat DOUBLE, p_long DOUBLE) and distance_between_airports(a INT, b INT) SQL functions are responsible for distance calculations between airports and finding the closest airport to a given geographical point. `distance_between_airports` calculates the distance between two airports based on their coordinates. `closest_airport` identifies the nearest airport to a specified latitude and longitude.
 
+  #+BEGIN_SRC jsx
+  ; React Map Component
+  import React, { useState, useEffect, useRef } from 'react';
+  import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+  ; Other imports...
+
+  function Map(props) {
+    ; Component implementation...
+  }
+
+  export default Map;
+  #+END_SRC
+This React component uses Leaflet for mapping features. It provides an interactive map where users can set markers and visualize travel routes. The component uses state variables and effects for managing marker positions and fetching airport data.
+
+
+  #+BEGIN_SRC jsx
+  ; Event Handling - Marker Interaction
+  const LocationFinderDummy = () => {
+    const map = useMapEvents({
+      click(e) {
+        ; Marker setting logic...
+      },
+    });
+    return null;
+  };
+
+  ; Data Fetching - closest_airport Function
+  useEffect(() => {
+    const data = { position: { lat: marker1[0], lng: marker1[1] } };
+    fetch('http://localhost:8080/closest_airport', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(response => response.json()).then(data => {
+      setData1(data);
+      props.onMarker1(data["id"]);
+      const marker = markerRef1.current;
+      if (marker) {
+        marker.openPopup();
+      }
+    });
+  }, [marker1]);
+  #+END_SRC
+
+The event handling logic enables users to set markers on the map. The `LocationFinderDummy` component uses the `useMapEvents` hook to detect click events. Data fetching is demonstrated using the `closest_airport` function, which is triggered when the marker position changes.
+
+  #+BEGIN_SRC jsx
+  ; Map Rendering - Leaflet Components
+  <MapContainer>
+    ; Other components...
+    <Marker icon={customIcon} position={marker1} ref={markerRef1}>
+      <Popup>{data1["name"]}</Popup>
+    </Marker>
+    ; Other components...
+  </MapContainer>
+
+  ; User Information Display
+  <div>
+    <h2>Your Travel Starts..</h2>
+    <h2>From: {data1 && data1["name"]}</h2>
+    <h2>To: {data2 && data2["name"]}</h2>
+  </div>
+  #+END_SRC
+
+This section involves rendering the map and markers using Leaflet components. Custom icons are used for markers. Popup information is displayed for each marker. User information is dynamically updated based on selected airports.
 ** Calculator
 
 ** Home
