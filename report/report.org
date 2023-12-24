@@ -360,14 +360,14 @@ where (src.id = origin_airport_id and
 
 ** Wrapper functions
    On top of the SQL scripts described above, the backend API uses some trivial select and insert commands, which were omitted. However, the shorter scripts can be still mentioned in the context of wrapper functions. *express_server/database.js* is the file were all communication between the backend and MySQL server takes place. It connects to the database using environmental variables inside *express_server/.env*:
-   #+begin_src
+   #+begin_src js
 MYSQL_USER='root'
 MYSQL_HOST='localhost'
 MYSQL_PASSWORD='<R00tUser>'
 MYSQL_DATABASE='traveling_cost'
    #+end_src
    Instead of keeping only one connection, *database.js* creates a /pool/ of connections using these credentials, which allows more flexible querying. Every query function is structured similar to this example:
-   #+begin_src
+   #+begin_src js
 export async function getCityCountry(airport_id) {
 	try {
 		const [result] = await pool.query(
@@ -383,7 +383,7 @@ export async function getCityCountry(airport_id) {
 }
    #+end_src
    Some functions retrieve or post user's sensitive data, and additional checks must be performed to confirm the someone's identity. Before that, let's have a look at a new user creation. This function check for the password length, hashes the password and inserts everything to the database:
-   #+begin_src 
+   #+begin_src js
 export async function newUser(user_data) {
 	if (user_data[1].length < 5)
 		throw new Error("Password shorter than 5 characters");
@@ -398,7 +398,7 @@ export async function newUser(user_data) {
 }
    #+end_src
    Then, there is a login function, used to verify someone's identity. The password provided is hashed and compared with the one in the database:
-   #+begin_src 
+   #+begin_src js
 export async function login(login_data) {
 	const [[result]] = await pool.query(
 		`select password_hash from users where email=?;`,
@@ -410,7 +410,7 @@ export async function login(login_data) {
    #+end_src
 
    Finally, each function that accesses, uploads or deletes user's private data goes through the authentification process, as in this example:
-   #+begin_src 
+   #+begin_src js
 export async function getUser(login_data) {
 	const authentificated = await login(login_data);
 	if (authentificated) {
@@ -428,7 +428,7 @@ export async function getUser(login_data) {
 
 ** HTTP requests
 	To communicate with client, Express.js framework is used to handle various HTTP requests. In *express_server/index.js*, a couple of services are defined, used as API by the client. In this example, server process a GET request for plane offers, taking source and destination airport IDs as parameters. *db* is object containing all functions exported from *express_server/database.js*. If database responds without errors, client is transmitted the result together with status 200 (OK). If something goes wrong, client is informed with status 400 (Bad Request).
-	#+begin_src
+	#+begin_src js
 app.get("/plane_offers/:source/:destination", async function(req, res) {
 	console.log("/plane_offers" +req.params.source + " " + req.params.destination);
 	let result = await db.getPlaneOffers(req.params.source, req.params.destination);
