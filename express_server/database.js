@@ -227,7 +227,7 @@ export async function getDistanceAirports(source_id, destination_id) {
 }
 
 function getPlanePrice(category, distance) {
-	return Math.floor((1/(category*category+5) * distance/1000));
+	return Math.floor((1/(category*category+5) * distance/100));
 }
 
 const INDIRECT1_MAX = 5;

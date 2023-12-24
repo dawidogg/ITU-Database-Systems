@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { Helmet } from 'react-helmet';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
@@ -11,7 +11,8 @@ function Map(props) {
 	const [marker1, setMarker1]  = useState([0, 0]);
 	const [marker2, setMarker2]  = useState([0, 0]);
 	const [activeMarker, setActiveMarker] = useState(0);
-
+	const markerRef1 = useRef(null);
+	const markerRef2 = useRef(null);
 	const [data1, setData1] = useState("");
 	const [data2, setData2] = useState("");
 
@@ -41,6 +42,10 @@ function Map(props) {
 			console.log(data);
 			setData1(data);
 			props.onMarker1(data["id"]);
+			const marker = markerRef1.current;
+			if (marker) {
+				marker.openPopup();
+			}
 		});
 	}, [marker1]);
 
@@ -54,6 +59,10 @@ function Map(props) {
 			console.log(data);
 			setData2(data);
 			props.onMarker2(data["id"]);
+			const marker = markerRef2.current;
+			if (marker) {
+				marker.openPopup();
+			}
 		});
 		props.onMarker2();
 	}, [marker2]);
@@ -69,9 +78,9 @@ function Map(props) {
 			<Helmet>
 				<title> {TITLE} </title>
 			</Helmet>
-			<MapContainer
+			<MapContainer 
 				center={[0, 0]}
-				zoom={6}
+				zoom={2}
 				style={{ height: '500px', width: '100%' }}>
 				<LocationFinderDummy />
 				<TileLayer
@@ -79,11 +88,13 @@ function Map(props) {
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				/>
 				<Marker icon={customIcon}
-						position={marker1}>
+						position={marker1}
+						ref={markerRef1}>
 					<Popup>{data1["name"]}</Popup>
 				</Marker>
 				<Marker icon={customIcon}
-						position={marker2}>
+						position={marker2}
+						ref={markerRef2}>
 					<Popup>{data2["name"]}</Popup>
 				</Marker>
 			</MapContainer>

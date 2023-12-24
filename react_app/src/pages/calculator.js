@@ -13,7 +13,6 @@ const TITLE = 'Calculator';
 export default function Calculator(props) {
 	let airlines = [];
 
-	const [dropdown_value, drop_down_change] = useState(0);
 	const [plane_offers, set_plane_offers] = useState([]);
 	const [clicked_card, updateClickedCard] = useState(-1);
 	const [plane_cost, set_plane_cost] = useState(0);
@@ -24,6 +23,7 @@ export default function Calculator(props) {
 		set_planes_loaded(false);
 		console.log("New plane offers fetching...");
 		const response = await fetch('http://localhost:8080/plane_offers/'+props.origin+'/'+props.destination);
+		// const response = await fetch('http://localhost:8080/plane_offers/'+344+'/'+1688); 
 		const text = await response.text();
 		set_plane_offers(JSON.parse(text));
 
@@ -33,11 +33,6 @@ export default function Calculator(props) {
 				airlines.push(code)
 		set_planes_loaded(true);
 	}
-
-	useEffect(() => {
-		console.log("Dropdown changed: " + dropdown_value);
-		fetch_plane_offers();
-	}, [dropdown_value]);
 
 	const saveHistory = (e) => {
 		e.preventDefault();
@@ -65,6 +60,7 @@ export default function Calculator(props) {
 	
 	useEffect(() => {
 		getWhere();
+		fetch_plane_offers();
 	}, []);
 
 	return (
