@@ -185,7 +185,7 @@ The project is organized in the following structure:
 
 ** Entity Relationship Diagram
   In total, there are 9 tables, interconnected in such a way:
-   [[./erdiagram.png]]
+   [[./images/erdiagram.png]]
 
 * Backend API
 ** SQL scripts
@@ -435,11 +435,32 @@ return (
 	</div>
 );
    #+end_src
-   The contents of *Router* tag are a static *Header* component, containing the navigation buttons, and a dynamic portion which is replaced by a page, based on URL. There a couple of states here. *account_name* state is passed to *Header* to render user's name, purely for design purposes. This state is updated every time *Account* component is triggered to update user credentials, on an *onLogin* event. *user_credentials* is a state on its own, shared between the parent, *Account*, and *Calculator* components. *Map* component can update parent's *airport1* and *airport2* states on marker change events. These states are needed for *Calculator*. In this design, map communicates the airport IDs to the calculator page by means of the parent. *Calculator* also needs *user_credentials*, because it saves calculations to the database, and since it is private data, our backend would demand authentication.
+   The contents of Router tag are a static Header component, containing the navigation buttons, and a dynamic portion which is replaced by a page, based on URL. There a couple of states here. *account_name* state is passed to Header to render user's name, purely for design purposes. This state is updated every time Account component is triggered to update user credentials, on an *onLogin* event. *user_credentials* is a state on its own, shared between the Parent, Account, and Calculator components. Map component can update Parent's *airport1* and *airport2* states on marker change events. These states are needed for Calculator. In this design, map communicates the airport IDs to the calculator page by means of the Parent. Calculator also needs *user_credentials*, because it saves calculations to the database, and since it is private data, our backend would demand authentication.
 ** Header
-   
-** Account
+	Header component resides *react_app/src/components/header.js*. It only renders navigation buttons and the website logo. On the *Account* button, text is changed from "Account" to the user's first name once logged in.
+	#+begin_src js
+	<img src={voyify_logo} />
+	<nav>
+		<ul>
+			<li><NavLink className="button" to="home"><img/>Home</NavLink></li>
+			<li><NavLink className="button" to="map"><img/>Map</NavLink></li>
+			<li><NavLink className="button" to="calculator"><img/>Calculator</NavLink></li>
+			<li><NavLink className="button" to="order"><img/>Order</NavLink></li>
+			<li><NavLink className="button" to="admin"><img/>Admin</NavLink></li>
+			<li><NavLink className="button_img" to="account"><img src={user_icon}/> {props.account_name}</NavLink></li>
+		</ul>
+	</nav>
+	#+end_src
 
+	Logo, designed by Başak:
+	[[./images/voyify-transparent.png]]
+
+	Account button change after logging in:
+	[[./images/account_button.png]]
+	[[./images/denis_button.png]]
+
+** Account
+   
 ** Map
  On the Map page, we have developed a frontend-centric interface. Turning our attention to the SQL side, we utilized the `closest_airport(p_lat double, p_long double)` function. This function takes latitude (`p_lat`) and longitude (`p_long`) as parameters and retrieves information from the `airports` table to find the closest airport to the specified location. The closest_airport(p_lat DOUBLE, p_long DOUBLE) and distance_between_airports(a INT, b INT) SQL functions are responsible for distance calculations between airports and finding the closest airport to a given geographical point. `distance_between_airports` calculates the distance between two airports based on their coordinates. `closest_airport` identifies the nearest airport to a specified latitude and longitude.
 

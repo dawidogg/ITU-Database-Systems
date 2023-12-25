@@ -1,36 +1,36 @@
 use traveling_cost;
 
-load data infile 'countries.csv' ignore
+load data infile 'csv/countries.csv' ignore
 into table countries
 fields terminated by ','
 enclosed by '"'       
 lines terminated by '\n';
 
-load data infile 'airlines.csv' ignore
+load data infile 'csv/airlines.csv' ignore
 into table airlines
 fields terminated by ','
 enclosed by '"'       
 lines terminated by '\n';
 
-load data infile 'airports.csv' ignore
+load data infile 'csv/airports_international.csv' ignore
 into table airports
 fields terminated by ','
 enclosed by '"'       
 lines terminated by '\n';
 
-load data infile 'routes.csv' ignore
+load data infile 'csv/routes.csv' ignore
 into table routes
 fields terminated by ','
 enclosed by '"'       
 lines terminated by '\n';
 
-load data infile 'planes.csv' ignore
+load data infile 'csv/planes.csv' ignore
 into table planes
 fields terminated by ','
 enclosed by '"'       
 lines terminated by '\n';
 
-load data infile 'cost_of_living_indices.csv' ignore
+load data infile 'csv/cost_of_living_indices.csv' ignore
 into table living_cost
 fields terminated by ','
 enclosed by '"'       
