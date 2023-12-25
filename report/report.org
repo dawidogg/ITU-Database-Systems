@@ -460,11 +460,14 @@ return (
 	[[./images/denis_button.png]]
 
 ** Account
-   Account page can be in one of two states: registration/login state or logged in state, where user's history can be examined.
-   	registerSubmit(e)
-	loginSubmit(e)
-	deleteAccount()
-	getHistory()
+   Account page can be in one of two states: registration/login state or logged in state, where user's history can be examined. Account can make fetch requests to the backend API using the following methods:
+   	- registerSubmit(e)
+	- loginSubmit(e)
+	- deleteAccount()
+	- getHistory()
+	Here are screenshots of the Account page:
+	[[./images/account.png]]
+	[[./images/loggedin.png]]
 ** Map
  On the Map page, we have developed a frontend-centric interface. Turning our attention to the SQL side, we utilized the `closest_airport(p_lat double, p_long double)` function. This function takes latitude (`p_lat`) and longitude (`p_long`) as parameters and retrieves information from the `airports` table to find the closest airport to the specified location. The closest_airport(p_lat DOUBLE, p_long DOUBLE) and distance_between_airports(a INT, b INT) SQL functions are responsible for distance calculations between airports and finding the closest airport to a given geographical point. `distance_between_airports` calculates the distance between two airports based on their coordinates. `closest_airport` identifies the nearest airport to a specified latitude and longitude.
 
@@ -533,7 +536,8 @@ The event handling logic enables users to set markers on the map. The `LocationF
   #+END_SRC
 
 This section involves rendering the map and markers using Leaflet components. Custom icons are used for markers. Popup information is displayed for each marker. User information is dynamically updated based on selected airports.
-** Calculator
 
-** Home
+** Calculator
+   Calculator takes two airport ID numbers, and displays a list of possible flights with their corresponding airlines. In a horizontal scrolling menu, cards with all details, such as airline logos, airlines names, stops and price are displayed. Number of days can be entered here as well. In the bottom, there is a submit button, which saves the calculated result.
+   [[./images/calculator.png]]
 
