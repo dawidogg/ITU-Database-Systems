@@ -14,7 +14,7 @@
    MySQL is an open-source relational database management system, having support for all devices and operating systems. It is lightweight, easy to operate, and due to its popularity there are MySQL extensions for integrated development environments, or even dedicated graphical programs. During development, we mostly used MySQL Workbench and the terminal version of MySQL client.
    Some functions in the database, as well as integration with an HTTP server required some customization. After installing MySQL, the following commands must be run inside the command-line client:
 
-#+begin_src
+#+begin_src sql
 mysql> FLUSH PRIVILEGES;
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '<R00tUser>';
 mysql> SET GLOBAL log_bin_trust_function_creators = 1;
@@ -49,87 +49,48 @@ mysql> SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 * Project folder structure
 # tree -L 4 -I "node_modules|?*png|?*svg|report|?*org|?*txt|sync.sh|?*md" . 
 The project is organized in the following structure:
-#+begin_quote
+#+begin_src
 .
-
 ├── express_server						Backend API server
-
 │   ├── database.js						Backend MySQL functions
-
 │   ├── index.js						HTTP request handling
-
 │   ├── package.json					Node.js dependency list
-
 │   └── package-lock.json
-
 ├── original_csv						Data imported to database
-
 │   ├── airlines.csv
-
 │   ├── airports.csv
-
 │   ├── cost_of_living_indices.csv
-
 │   ├── countries.csv
-
 │   ├── planes.csv
-
 │   └── routes.csv					
-
 ├── react_app							Frontend server
-
 │   ├── package.json					Node.js dependency list
-
 │   ├── package-lock.json
-
 │   ├── public							
-
 │   │   ├── airline_logos				Database of airline logos
-
 │   │   ├── favicon.ico					Application icon
-
 │   │   ├── index.html
-
 │   │   └── manifest.json
-
 │   └── src								React source folder
-
 │       ├── App.css						Frontend CSS
-
 │       ├── App.js						React root component
-
 │       ├── components					
-
 │       │   ├── footer.js				
-
 │       │   └── header.js				Header component with navigation buttons
-
 │       ├── images						Small images, part of pages' design
-
 │       ├── index.js					
-
 │       ├── pages						React child components
-
 │       │   ├── account.js
-
 │       │   ├── admin.js
-
 │       │   ├── calculator.js
-
 │       │   ├── home.js
-
 │       │   ├── map.js
-
 │       │   └── order.js
-
 │       ├── reportWebVitals.js
-
 │       └── setupTests.js
-
 ├── SCHEMA.sql							Script to create MySQL database and tables
-
 └── IMPORT.sql							Script to import all from CSV and create functions
-#+end_quote
+#+end_src
 
 * Database
 ** Database sources
@@ -454,8 +415,28 @@ app.get("/plane_offers/:source/:destination", async function(req, res) {
 
 * Frontend
 ** Parent component
-   reactApp.js
-** Navigation bar
+   React parent component is defined in *react_app/src/App.js*. It includes all child component files, routes to different pages, keeps global states, provides inter-page communication and even can make fetch requests to backend server. The way the application renders is defined in the return statement of the *App()* functional component:
+   #+begin_src js
+return (
+	<div>
+		<Router>
+			<Header account_name={account_name}/>
+			<Routes>
+				<Route path='/' element={<Home/>}/>
+				<Route path='/home' element={<Home/>}/>
+				<Route path='/map' element=
+					   {<Map onMarker1={(result) => {setAirport1(result)}} onMarker2={(result) => {setAirport2(result)}}/>}/>
+				<Route path='/calculator' element=
+					   {<Calculator origin={airport1} destination={airport2} user_credentials={user_credentials}/>}/>
+				<Route path='/account' element=
+					   {<Account user_data={user_data} user_credentials={user_credentials} onLogin={(result) => {setUserCredentials(result)}}/>}/>
+			</Routes>
+		</Router>
+	</div>
+);
+   #+end_src
+   The contents of *Router* tag are a static *Header* component, containing the navigation buttons, and a dynamic portion which is replaced by a page, based on URL. There a couple of states here. *account_name* state is passed to *Header* to render user's name, purely for design purposes. This state is updated every time *Account* component is triggered to update user credentials, on an *onLogin* event. *user_credentials* is a state on its own, shared between the parent, *Account*, and *Calculator* components. *Map* component can update parent's *airport1* and *airport2* states on marker change events. These states are needed for *Calculator*. In this design, map communicates the airport IDs to the calculator page by means of the parent. *Calculator* also needs *user_credentials*, because it saves calculations to the database, and since it is private data, our backend would demand authentication.
+** Header
    
 ** Account
 
