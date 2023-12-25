@@ -536,8 +536,11 @@ The event handling logic enables users to set markers on the map. The `LocationF
   #+END_SRC
 
 This section involves rendering the map and markers using Leaflet components. Custom icons are used for markers. Popup information is displayed for each marker. User information is dynamically updated based on selected airports.
+	[[./images/map.png]]
 
 ** Calculator
    Calculator takes two airport ID numbers, and displays a list of possible flights with their corresponding airlines. In a horizontal scrolling menu, cards with all details, such as airline logos, airlines names, stops and price are displayed. Number of days can be entered here as well. In the bottom, there is a submit button, which saves the calculated result.
    [[./images/calculator.png]]
 
+** Home
+   [[./images/home.png]]
