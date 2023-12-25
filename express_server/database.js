@@ -243,6 +243,7 @@ const shuffle = (array) => {
 
 export async function getPlaneOffers(source_id, destination_id) {
 	const routes = await getRoutes(source_id, destination_id, 20);
+	console.log(routes);
 	let cards0 = [];
 	let cards1 = [];
 	let cards2 = [];
@@ -272,6 +273,7 @@ export async function getPlaneOffers(source_id, destination_id) {
 
 		// Card({count, airline_name, airline_code, route, price})
 		if (flight_count == 1) {
+			console.log("Flight count is 1");
 			for (let j = 0; j < airlines0.length; j++) {
 				let card = [];
 				card.push(1);
@@ -283,7 +285,8 @@ export async function getPlaneOffers(source_id, destination_id) {
 			}
 		}
 
-		if (flight_count == 2) {		
+		if (flight_count == 2) {
+			console.log("Flight count is 2");
 			let pairs = [];
 			for (let i = 0; i < airlines0.length; i++)
 				for (let j = 0; j < airlines1.length; j++)
@@ -304,6 +307,7 @@ export async function getPlaneOffers(source_id, destination_id) {
 		}
 
 		if (flight_count == 3) {
+			console.log("Flight count is 3");
 			let pairs = [];
 			for (let i = 0; i < airlines0.length; i++)
 				for (let j = 0; j < airlines1.length; j++)

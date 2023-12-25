@@ -12,7 +12,7 @@ fields terminated by ','
 enclosed by '"'       
 lines terminated by '\n';
 
-load data infile 'csv/airports_international.csv' ignore
+load data infile 'csv/airports_international.csv' 
 into table airports
 fields terminated by ','
 enclosed by '"'       

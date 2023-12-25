@@ -271,7 +271,6 @@ thead, tfoot {
     width:100%;    
 }
 tbody {
-    height:300px;
     overflow:auto;
     overflow-x:hidden;    
     width:100%;

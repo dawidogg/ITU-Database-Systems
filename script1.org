@@ -303,11 +303,53 @@ end$$
 delimiter ; 
 #+end_src	
 
+#+begin_src sql
+use traveling_cost;
+select 1735 into @source;
+select 1657 into @destination;
+
+select distinct 
+		lvl0.src_airport_id as a0,
+	    lvl1.src_airport_id as a1,
+	    case when (
+	     lvl0.dest_airport_id = @destination
+	    ) then -1
+	    else lvl2.src_airport_id end as a2,
+	    case when (
+	     lvl0.dest_airport_id = @destination or
+	     lvl1.dest_airport_id = @destination
+	    ) then -1
+	    else lvl2.dest_airport_id end as a3,
+	  case
+		when lvl0.dest_airport_id = @destination then (
+			select distance_between_airports(lvl0.src_airport_id, lvl0.dest_airport_id)
+		)
+		when lvl1.dest_airport_id = @destination then (
+			(select distance_between_airports(lvl0.src_airport_id, lvl0.dest_airport_id)) +
+			(select distance_between_airports(lvl1.src_airport_id, lvl1.dest_airport_id))			
+		)
+		when lvl2.dest_airport_id = @destination then (
+			(select distance_between_airports(lvl0.src_airport_id, lvl0.dest_airport_id)) +
+			(select distance_between_airports(lvl1.src_airport_id, lvl1.dest_airport_id)) +
+			(select distance_between_airports(lvl2.src_airport_id, lvl2.dest_airport_id))
+		)
+		else 2147483647
+	   end as distance
+from routes as lvl0
+left join routes as lvl1 on lvl0.dest_airport_id = lvl1.src_airport_id
+left join routes as lvl2 on lvl1.dest_airport_id = lvl2.src_airport_id
+where (lvl0.src_airport_id = @source and lvl0.dest_airport_id = @destination) or
+	  (lvl0.src_airport_id = @source and lvl1.dest_airport_id = @destination) or
+      (lvl0.src_airport_id = @source and lvl2.dest_airport_id = @destination)
+order by distance
+limit 20;
+#+end_src
+
 * Calculate indirect routes and show all details
 #+begin_src sql
 use traveling_cost;
-select 344 into @source;
-select 1688 into @destination;
+select 1735 into @source;
+select 1657 into @destination;
 	   
 with intermediate as
 (select distinct 
@@ -345,7 +387,7 @@ where (lvl0.src_airport_id = @source and lvl0.dest_airport_id = @destination) or
       (lvl0.src_airport_id = @source and lvl2.dest_airport_id = @destination)
 order by distance
 limit 20)
-select intermediate.distance,
+select distinct intermediate.distance,
 	   a0.city as 'airport0_city', a0.country as 'airport0_country',
 	   a1.city as 'airport1_city', a1.country as 'airport1_country', 
 	   a2.city as 'airport2_city', a2.country as 'airport2_country', 
@@ -355,10 +397,11 @@ select intermediate.distance,
 	   intermediate.a2 as 'airport2_id',
 	   intermediate.a3 as 'airport3_id'
 from airports a0, airports a1, airports a2, airports a3, intermediate
-where (a0.id =    intermediate.a0 and
-		  a1.id = intermediate.a1 and
-		  a2.id = intermediate.a2 and
-		  a3.id = intermediate.a3);	
+where (intermediate.a0 = a0.id and
+	  intermediate.a1 = a1.id and
+	  intermediate.a2 = a2.id and
+	  intermediate.a3 = a3.id)
+
 #+end_src
 
 * Get airlines data from route

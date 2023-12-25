@@ -21,7 +21,7 @@ function Account(props) {
 	);
 
 	const registerSubmit = (e) => {
-		e.preventDefault();
+		e.preventDefault();		
 		let data = [];
 		for (let i = 0; i < 5; i++)
 			data.push(e.target[i].value);
@@ -37,6 +37,7 @@ function Account(props) {
 		}).then(responseData => {
 			console.log(responseData);
 		});
+		window.location.reload();
 	};
 
 	const loginSubmit = (e) => {
@@ -56,6 +57,7 @@ function Account(props) {
 			console.log(responseData);
 			if (responseData === 'true') {
 				props.onLogin(data);
+				getHistory();
 			} else {
 				props.onLogin(null);
 			}

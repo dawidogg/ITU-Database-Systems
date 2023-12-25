@@ -11,7 +11,7 @@ primary key (name)
 );
 
 create table airlines (
-id int not null auto_increment,
+id int not null,
 name varchar(255) not null,
 alias varchar(128),
 iata varchar(10),     
@@ -19,8 +19,7 @@ icao varchar(10),
 callsign varchar(255),
 country varchar(255),  
 active varchar(10),
-primary key (id),
-foreign key (country) references countries(name)
+primary key (id)
 );
 
 create table airports (
@@ -38,8 +37,7 @@ dst varchar(3),
 tz varchar(255),
 type varchar(255),                 
 source varchar(255),
-primary key (id),
-foreign key (country) references countries(name)
+primary key (id)
 );
 
 create table routes (
