@@ -51,35 +51,35 @@ mysql> SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 The project is organized in the following structure:
 #+begin_src
 .
-├── express_server                Backend API server
-│   ├── database.js               Backend MySQL functions
-│   ├── index.js                  HTTP request handling
-│   ├── package.json              Node.js dependency list
-│   └── package-lock.json
-├── original_csv                  Data imported to database
-│   ├── airlines.csv
-│   ├── airports.csv
-│   ├── cost_of_living_indices.csv
-│   ├── countries.csv
-│   ├── planes.csv
-│   └── routes.csv                
-├── react_app                     Frontend server
-│   ├── package.json              Node.js dependency list
-│   ├── package-lock.json
-│   ├── public                      
-│   │   ├── airline_logos         Database of airline logos
-│   │   ├── favicon.ico           Application icon
-│   │   ├── index.html
-│   │   └── manifest.json
-│   └── src                       React source folder
-│       ├── App.css               Frontend CSS
-│       ├── App.js                React root component
-│       ├── components             
-│       │   ├── footer.js         
-│       │   └── header.js         Header component with navigation buttons
-│       ├── images                Small images, part of pages' design
-│       ├── index.js              
-│       ├── pages                 React child components
+├── express_server                   Backend API server
+│   ├── database.js                  Backend MySQL functions
+│   ├── index.js                     HTTP request handling
+│   ├── package.json                 Node.js dependency list
+│   └── package-lock.json		     
+├── original_csv                     Data imported to database
+│   ├── airlines.csv			     
+│   ├── airports.csv			     
+│   ├── cost_of_living_indices.csv   
+│   ├── countries.csv			     
+│   ├── planes.csv				     
+│   └── routes.csv                   
+├── react_app                        Frontend server
+│   ├── package.json                 Node.js dependency list
+│   ├── package-lock.json		     
+│   ├── public                         
+│   │   ├── airline_logos            Database of airline logos
+│   │   ├── favicon.ico              Application icon
+│   │   ├── index.html			     
+│   │   └── manifest.json		     
+│   └── src                          React source folder
+│       ├── App.css                  Frontend CSS
+│       ├── App.js                   React root component
+│       ├── components                
+│       │   ├── footer.js            
+│       │   └── header.js            Header component with navigation buttons
+│       ├── images                   Small images, part of pages' design
+│       ├── index.js                 
+│       ├── pages                    React child components
 │       │   ├── account.js
 │       │   ├── admin.js
 │       │   ├── calculator.js
@@ -88,8 +88,8 @@ The project is organized in the following structure:
 │       │   └── order.js
 │       ├── reportWebVitals.js
 │       └── setupTests.js
-├── SCHEMA.sql               Script to create MySQL database and tables
-└── IMPORT.sql               Script to import all from CSV and create functions
+├── SCHEMA.sql                       Script to create MySQL database and tables
+└── IMPORT.sql                       Script to import all from CSV and create functions
 #+end_src
 
 * Database
@@ -464,7 +464,7 @@ return (
 
 ** Account
    Account page can be in one of two states: registration/login state or logged in state, where user's history can be examined. Account can make fetch requests to the backend API using the following methods:
-       - registerSubmit(e)
+    - registerSubmit(e)
     - loginSubmit(e)
     - deleteAccount()
     - getHistory()
